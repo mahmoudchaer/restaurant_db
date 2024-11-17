@@ -10,7 +10,7 @@ CREATE DOMAIN money_type AS DECIMAL(10,2);
 
 CREATE DOMAIN rating_type AS DECIMAL(3 ,1);
 
-CREATE DOMAIN description_type AS CLOB;
+CREATE DOMAIN description_type AS text;
 
 CREATE DOMAIN quantity_type AS INT;
 
