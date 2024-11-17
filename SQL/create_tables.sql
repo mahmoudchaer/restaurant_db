@@ -111,3 +111,100 @@ CREATE TABLE chef (
     works_in int --fk works_in to kitchen_station
     -- FOREIGN KEY (supervisor_id) REFERENCES chef(employee_id) ON DELETE SET NULL               
 );
+
+-Hussein
+
+CREATE TABLE Supplier (
+	SupplierID INTEGER NOT NULL, 
+	NameSupp VARCHAR(25) NOT NULL,
+	Address VARCHAR(255) NOT NULL,
+	PhoneNumber INTEGER NOT NULL,
+	Email VARCHAR(30) NOT NULL,
+	
+	CONSTRAINT US_constraint UNIQUE (SuppierID, PhoneNumber, Email), -- Constraint 	Unique Supplier
+	PRIMARY KEY (SupplierID)
+	--NO FK
+);
+
+CREATE TABLE Product (
+	ProductID INTEGER NOT NULL,
+	ProductName VARCHAR(20) NOT NULL,
+	SupplierID INTEGER NOT NULL,
+	
+	CONSTRAINT UP_constraint UNIQUE (ProductID),  --Constraint unique productID 
+	PRIMARY KEY (ProductID),
+	FOREIGN KEY (SupplierID) REFERENCES Supplier(SupplierID) ON DELETE CASCADE
+);
+
+
+CREATE TABLE DeliveryDriver(
+	EmployeeID INTEGER NOT NULL,
+	DriverName VARCHAR(25) NOT NULL,
+	ContactInfo INTEGER NOT NULL,
+	VehicleType VARCHAR(10) NOT NULL,
+	AverageRating INTEGER,
+	WaiterContact INTEGER NOT NULL,
+
+	CONSTRAINT UDD_constraint UNIQUE (EmployeeID, ContactInfo),  --Constraint Unique delivery driver
+	PRIMARY KEY (EmployeeID)
+	-- FK Waiter Contact references EmployeeID in waiter
+);
+
+CREATE TABLE AssignedLocations(
+	LocationID INTEGER NOT NULL,
+	Address VARCHAR(255) NOT NULL,
+	Delivery_EmployeeID INTEGER, --We could have a location not yet assigned to a driver or if the driver responsible for it just quit
+
+	CONSTRAINT UL_constraint UNIQUE (LocationID),   --Constraint Unique location ID
+	PRIMARY KEY (LocationID),
+	FOREIGN KEY (Delivery_EmployeeID) REFERENCES DeliveryDriver(EmployeeID) ON DELETE SET NULL
+	
+);
+
+
+CREATE TABLE Administration(
+	EmployeeID INTEGER NOT NULL,
+	AdmName VARCHAR(25) NOT NULL,
+	AdmRole VARCHAR(30), -- Could be NULL if newly hired, promoted or demoted/suspended
+	Salary INTEGER, --Could be NULL if newly hired, promoted or demoted/suspended
+	Address VARCHAR (255) NOT NULL, 
+	PhoneNumber INTEGER NOT NULL,
+	Email VARCHAR(30) NOT NULL,
+
+	CONSTRAINT UA_constraint UNIQUE (EmployeeID, PhoneNumber, Email),
+	PRIMARY KEY (EmployeeID)
+	--NO FK
+);
+
+
+
+CREATE TABLE KitchenStation (
+	StationName VARCHAR(25) NOT NULL,
+	Number_of_Chefs INTEGER, --Could be NULL if station newly created or about to be closed
+	Specialization VARCHAR(30) NOT NULL,
+	ManagerID INTEGER NOT NULL,
+
+
+	CONSTRAINT UK_constraint UNIQUE (StationName, ManagerID), --Constraint Unique kitchen 
+	PRIMARY KEY (StationName)
+	--FOREIGN KEY ManagerID REFERENCES Chef(EmployeeID) ON DELETE SET NULL
+);
+
+
+
+CREATE TABLE EmergencyContact(
+	ContactName VARCHAR(25) NOT NULL,
+	Relation VARCHAR(20) NOT NULL,
+	Priority INTEGER NOT NULL,
+	Phone_Number INTEGER NOT NULL,
+	Dep_EmployeeID INTEGER NOT NULL,
+
+	--NO UNIQUE CONSTRAINT AS TWO EMPLOYEES CAN HAVE THE SAME EMERGENCY CONTACT, SAY IF THEY WERE RELATED 
+	--AND THE SAME EMPPLOYEE CAN HAVE MULTIPLE EMERGENCY CONTACTS
+	CONSTRAINT PK_EContact PRIMARY KEY (ContactName, Dep_EmployeeID)
+	--FOREIGN KEY Dep_EmployeeID REFERENCES Waiter(EmployeeID) ON DELETE CASCADE,
+	--FOREIGN KEY Dep_EmployeeID REFERENCES DeliveryDriver(EmployeeID) ON DELETE CASCADE,
+	--FOREIGN KEY Dep_EmployeeID REFERENCES Chef(EmployeeID) ON DELETE CASCADE,
+
+
+);
