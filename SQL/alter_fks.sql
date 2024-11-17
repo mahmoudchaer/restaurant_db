@@ -1,49 +1,49 @@
--- Add Foreign Key to Payment_Method for Customer_ID
-ALTER TABLE Payment_Method 
-ADD CONSTRAINT fk_payment_customer 
-FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID) ON DELETE CASCADE;
+-- add foreign key to payment_method for customer_id
+alter table payment_method 
+add constraint fk_payment_customer 
+foreign key (customer_id) references customer(customer_id) on delete cascade;
 
--- Add Foreign Key to Review for Customer_ID
-ALTER TABLE Review 
-ADD CONSTRAINT fk_review_customer 
-FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID) ON DELETE CASCADE;
+-- add foreign key to review for customer_id
+alter table review 
+add constraint fk_review_customer 
+foreign key (customer_id) references customer(customer_id) on delete cascade;
 
--- Add Foreign Key to Image_Review for Review_Number and Customer_ID
-ALTER TABLE Image_Review 
-ADD CONSTRAINT fk_image_review 
-FOREIGN KEY (Review_Number, Customer_ID) REFERENCES Review(Review_ID, Customer_ID) ON DELETE CASCADE;
+-- add foreign key to image_review for review_number and customer_id
+alter table image_review 
+add constraint fk_image_review 
+foreign key (review_number, customer_id) references review(review_id, customer_id) on delete cascade;
 
--- Add Foreign Key to Image_Meal for Meal_Name
-ALTER TABLE image_meal 
-ADD CONSTRAINT fk_image_meal 
-FOREIGN KEY (meal_name) REFERENCES meal(meal_name);
+-- add foreign key to image_meal for meal_name
+alter table image_meal 
+add constraint fk_image_meal 
+foreign key (meal_name) references meal(meal_name);
 
--- Add Foreign Key to Menu_Day for Menu_ID
-ALTER TABLE menu_day 
-ADD CONSTRAINT fk_menu_day 
-FOREIGN KEY (menu_ID) REFERENCES menu(menu_ID) ON DELETE CASCADE;
+-- add foreign key to menu_day for menu_id
+alter table menu_day 
+add constraint fk_menu_day 
+foreign key (menu_id) references menu(menu_id) on delete cascade;
 
--- Add Foreign Key to Orders for Customer_ID
-ALTER TABLE orders 
-ADD CONSTRAINT fk_orders_customer 
-FOREIGN KEY (customer_id) REFERENCES Customer(Customer_ID);
+-- add foreign key to orders for customer_id
+alter table orders 
+add constraint fk_orders_customer 
+foreign key (customer_id) references customer(customer_id);
 
--- Add Foreign Key to Orders for Delivery_Driver_ID
-ALTER TABLE orders 
-ADD CONSTRAINT fk_orders_driver 
-FOREIGN KEY (delivery_driver_id) REFERENCES delivery_driver(delivery_driver_id);
+-- add foreign key to orders for delivery_driver_id
+alter table orders 
+add constraint fk_orders_driver 
+foreign key (delivery_driver_id) references delivery_driver(delivery_driver_id);
 
--- Add Foreign Key to Tables for Waiter_ID
-ALTER TABLE tables 
-ADD CONSTRAINT fk_tables_waiter 
-FOREIGN KEY (waiter_id) REFERENCES waiter(waiter_id);
+-- add foreign key to tables for waiter_id
+alter table tables 
+add constraint fk_tables_waiter 
+foreign key (waiter_id) references waiter(waiter_id);
 
--- Add Foreign Key to Chef for Supervisor_ID
-ALTER TABLE chef 
-ADD CONSTRAINT fk_chef_supervisor 
-FOREIGN KEY (supervisor_id) REFERENCES chef(employee_id) ON DELETE SET NULL;
+-- add foreign key to chef for supervisor_id
+alter table chef 
+add constraint fk_chef_supervisor 
+foreign key (supervisor_id) references chef(employee_id) on delete set null;
 
--- Add Foreign Key to Chef for Works_In
-ALTER TABLE chef 
-ADD CONSTRAINT fk_chef_kitchen 
-FOREIGN KEY (works_in) REFERENCES kitchen_station(kitchen_station_id);
+-- add foreign key to chef for works_in
+alter table chef 
+add constraint fk_chef_kitchen 
+foreign key (works_in) references kitchen_station(kitchen_station_id);
