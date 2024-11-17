@@ -3,7 +3,7 @@
 CREATE TABLE Customer (
     Customer_ID id_type PRIMARY KEY,
     Address address_type,
-    -- Avg_Rating DECIMAL(4, 1), --derived attribute
+    -- Avg_Rating rating_type, --derived attribute
     Points INT ,
     cust_Name name_type  not null,
     Phone_Number phone_type,
@@ -42,7 +42,7 @@ Create table Ingredient (
 	
 	inventory_id id_type primary key,
 	minimum_quantity quantity_type  not null,
-	--price int, --derived attribute
+	--price money_type , --derived attribute
 	stock_qty quantity_type  not null,
 	ingr_name name_type  not null
 
@@ -71,48 +71,63 @@ create table image_meal(
 -- omar
 
 CREATE TABLE menu (
-    menu_ID INT PRIMARY KEY,         
-    start_time TIME NOT NULL,           
-    end_time TIME NOT NULL,             
+    menu_ID id_type PRIMARY KEY,         
+    start_time time_type NOT NULL,           
+    end_time time_type NOT NULL,             
     category VARCHAR(255) NOT NULL,      
-    image varchar(255)                        
+    image image_type                        
 );
 
 
 CREATE TABLE menu_day (
-    menu_ID INT NOT NULL,               
+    menu_ID id_type NOT NULL,               
     day VARCHAR(15) NOT NULL,           
     PRIMARY KEY (menu_ID, day)      
     -- FOREIGN KEY (menu_ID) REFERENCES menu(menu_ID) ON DELETE CASCADE               
 );
 
 CREATE TABLE orders (
-    order_ID INT PRIMARY KEY,     
+    order_ID id_type PRIMARY KEY,     
     date DATE NOT NULL,        
     status VARCHAR(20) NOT NULL,     
     priority VARCHAR(10),     
-    customer_id int, -- fk customer_ID to customer
-    delivery_driver_id int --fk delivery_driver to delivery driver
+    customer_id id_type, -- fk customer_ID to customer
+    delivery_driver_id id_type --fk delivery_driver to delivery driver
 );
 
 CREATE TABLE tables (
-    table_ID INT PRIMARY KEY,         
-    seat_capacity INT NOT NULL,          
+    table_ID id_type PRIMARY KEY,         
+    seat_capacity INT NOT NULL CHECK (Value>=0),          
     availability BOOLEAN NOT NULL,        
-    waiter_id int -- fk waiter_ID to waiter
-
+     waiter_id id_type -- fk waiter_ID to waiter
+      
 );
 
 CREATE TABLE chef (
-    employee_id INT PRIMARY KEY,      
+    employee_id id_type PRIMARY KEY,      
     chef_role VARCHAR(50) NOT NULL,          
-    salary INT NOT NULL,     
+    salary money_type NOT NULL,     
     hire_date DATE,            
-    CV TEXT,                            
-    supervisor_id INT,
-    works_in int --fk works_in to kitchen_station
+    CV description_type,                            
+    supervisor_id id_type,
+    works_in id_type --fk works_in to kitchen_station
     -- FOREIGN KEY (supervisor_id) REFERENCES chef(employee_id) ON DELETE SET NULL               
 );
+
+CREATE TABLE waiter (
+    employee_id id_type PRIMARY KEY,      
+    waiter_role VARCHAR(50) NOT NULL,           
+    waiter_name name_type NOT NULL,          
+    CV description_type,                             
+    salary money_type NOT NULL,      
+    hire_date DATE NOT NULL,            
+    supervisor_id id_type,                  
+    FOREIGN KEY (supervisor_id) REFERENCES waiter(employee_id) 
+        ON DELETE SET NULL               
+
+            
+);
+
 
 --Hussein
 
