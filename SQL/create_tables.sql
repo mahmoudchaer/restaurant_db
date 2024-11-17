@@ -12,6 +12,21 @@ CREATE TABLE Customer (
     CONSTRAINT Phone_email_constraint_cust UNIQUE (Phone_Number, Email)
 );
 
+Create table HR(
+
+	employee_id id_type Primary key,
+	address address_type,
+	hr_name name_type not null,
+	salary money_type not null,
+	hr_role VARCHAR(50) not null,
+	email email_type not null,
+	phone_number phone_type not null,
+	
+	CONSTRAINT Phone_email_constraint_hr UNIQUE (Phone_Number, Email)
+
+
+);
+
 CREATE TABLE Payment_Method (
     Payment_ID id_type  PRIMARY KEY,
     Payment_Type VARCHAR(50) ,
