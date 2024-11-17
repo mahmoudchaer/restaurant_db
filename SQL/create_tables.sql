@@ -9,7 +9,7 @@ CREATE TABLE Customer (
     Phone_Number phone_type,
     Email email_type,
     Table_ID INT, -- Foreign key references id of table
-    CONSTRAINT Phone_email_constraint_cust UNIQUE (Phone_Number, Email),
+    CONSTRAINT Phone_email_constraint_cust UNIQUE (Phone_Number, Email)
 );
 
 CREATE TABLE Payment_Method (
