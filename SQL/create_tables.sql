@@ -1,65 +1,68 @@
 --Mahmoud
 
 CREATE TABLE Customer (
-    Customer_ID INT PRIMARY KEY,
-    Address VARCHAR(255),
+    Customer_ID id_type  PRIMARY KEY,
+    Address address_type,
     -- Avg_Rating DECIMAL(4, 1), --derived attribute
     Points INT,
-    cust_Name VARCHAR(100) not null,
-    Phone_Number VARCHAR(15),
-    Email VARCHAR(100),
-    Table_ID INT -- Foreign key references id of table
+    cust_Name name_type  not null,
+    Phone_Number phone_type,
+    Email email_type,
+    Table_ID INT, -- Foreign key references id of table
+    CONSTRAINT Customer_constraint UNIQUE (Customer_ID),
+    CONSTRAINT Customer_constraint UNIQUE (PhoneNumber),
+    CONSTRAINT Customer_constraint UNIQUE (Email)
 );
 
 CREATE TABLE Payment_Method (
-    Payment_ID INT PRIMARY KEY,
+    Payment_ID id_type  PRIMARY KEY,
     Payment_Type VARCHAR(50) ,
-    Customer_ID INT
+    Customer_ID id_type 
     -- FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID) on delete cascade
 );
 
 CREATE TABLE Review (
-    Review_ID INT, 
-    Customer_ID INT, 
-    Rating DECIMAL(3, 1) not null,
-    Description TEXT,
+    Review_ID id_type , 
+    Customer_ID id_type, 
+    Rating rating_type  not null,
+    Description description_type ,
     constraint pk_comp_cust_review PRIMARY KEY (Review_ID, Customer_ID)
     -- FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID) on delete cascade
 );
 
 CREATE TABLE Image_Review (
-    Image_ID INT PRIMARY KEY,
-    Image VARCHAR(255) not null, 
+    Image_ID id_type  PRIMARY KEY,
+    Image image_type  not null, 
     Review_Number INT,
-    Customer_ID INT
+    Customer_ID id_type 
     -- FOREIGN KEY (Review_Number, Customer_ID) REFERENCES Review(Review_ID, Customer_ID) on delete cascade
 );
 
 Create table Ingredient (
 	
-	inventory_id int primary key,
-	minimum_quantity int not null,
+	inventory_id id_type primary key,
+	minimum_quantity quantity_type  not null,
 	--price int, --derived attribute
-	stock_qty int not null,
-	ingr_name varchar(100) not null
+	stock_qty quantity_type  not null,
+	ingr_name name_type  not null
 
 );
 
 create table meal(
-	meal_name varchar(100) primary key,
-	cost_meal decimal (3,1) not null,
-	recipe varchar(500) not null,
-	price decimal(3,2) not null,
+	meal_name name_type  primary key,
+	cost_meal money_type  (3,1) not null,
+	recipe description_type not null,
+	price money_type  not null,
 	category varchar (50) not null,
-	description varchar(200) not null
+	description description_type  not null
 	--avg_cook_time time, --derived
 
 );
 
 create table image_meal(
-	image_id int primary key,
-	image varchar(255) not null,
-	meal_name varchar(100)
+	image_id id_type  primary key,
+	image image_type  not null,
+	meal_name name_type 
     -- FOREIGN KEY (meal_name) REFERENCES meal(meal_name)
 
 
@@ -90,7 +93,6 @@ CREATE TABLE orders (
     priority VARCHAR(10),     
     customer_id int, -- fk customer_ID to customer
     delivery_driver_id int --fk delivery_driver to delivery driver
-
 );
 
 CREATE TABLE tables (
