@@ -117,45 +117,43 @@ CREATE TABLE chef (
 -Hussein
 
 CREATE TABLE Supplier (
-	SupplierID INTEGER NOT NULL, 
-	NameSupp VARCHAR(25) NOT NULL,
-	Address VARCHAR(255) NOT NULL,
-	PhoneNumber INTEGER NOT NULL,
-	Email VARCHAR(30) NOT NULL,
+	SupplierID id_type NOT NULL, 
+	NameSupp name_type NOT NULL,
+	Address address_type NOT NULL,
+	PhoneNumber phone_type NOT NULL,
+	Email email_type NOT NULL,
 	
-	CONSTRAINT US_constraint UNIQUE (SuppierID, PhoneNumber, Email), -- Constraint 	Unique Supplier
+	CONSTRAINT US_constraint UNIQUE (PhoneNumber, Email), -- Constraint 	Unique Supplier
 	PRIMARY KEY (SupplierID)
-	--NO FK
 );
 
 CREATE TABLE Product (
-	ProductID INTEGER NOT NULL,
-	ProductName VARCHAR(20) NOT NULL,
-	SupplierID INTEGER NOT NULL,
-	
-	CONSTRAINT UP_constraint UNIQUE (ProductID),  --Constraint unique productID 
+	ProductID id_type NOT NULL,
+	ProductName name_type NOT NULL,
+	SupplierID id_type NOT NULL,
+
 	PRIMARY KEY (ProductID),
 	FOREIGN KEY (SupplierID) REFERENCES Supplier(SupplierID) ON DELETE CASCADE
 );
 
 
 CREATE TABLE DeliveryDriver(
-	EmployeeID INTEGER NOT NULL,
-	DriverName VARCHAR(25) NOT NULL,
-	ContactInfo INTEGER NOT NULL,
+	EmployeeID id_type NOT NULL,
+	DriverName name_type NOT NULL,
+	ContactInfo phone_type NOT NULL,
 	VehicleType VARCHAR(10) NOT NULL,
-	AverageRating INTEGER,
-	WaiterContact INTEGER NOT NULL,
+	AverageRating rating_type,
+	WaiterContact id_type NOT NULL,
 
-	CONSTRAINT UDD_constraint UNIQUE (EmployeeID, ContactInfo),  --Constraint Unique delivery driver
+	CONSTRAINT UDD_constraint UNIQUE (ContactInfo),  --Constraint Unique delivery driver
 	PRIMARY KEY (EmployeeID)
 	-- FK Waiter Contact references EmployeeID in waiter
 );
 
 CREATE TABLE AssignedLocations(
-	LocationID INTEGER NOT NULL,
-	Address VARCHAR(255) NOT NULL,
-	Delivery_EmployeeID INTEGER, --We could have a location not yet assigned to a driver or if the driver responsible for it just quit
+	LocationID id_type NOT NULL,
+	Address address_type NOT NULL,
+	Delivery_EmployeeID id_type, --We could have a location not yet assigned to a driver or if the driver responsible for it just quit
 
 	CONSTRAINT UL_constraint UNIQUE (LocationID),   --Constraint Unique location ID
 	PRIMARY KEY (LocationID),
@@ -165,15 +163,15 @@ CREATE TABLE AssignedLocations(
 
 
 CREATE TABLE Administration(
-	EmployeeID INTEGER NOT NULL,
-	AdmName VARCHAR(25) NOT NULL,
+	EmployeeID id_type NOT NULL,
+	AdmName name_type NOT NULL,
 	AdmRole VARCHAR(30), -- Could be NULL if newly hired, promoted or demoted/suspended
-	Salary INTEGER, --Could be NULL if newly hired, promoted or demoted/suspended
-	Address VARCHAR (255) NOT NULL, 
-	PhoneNumber INTEGER NOT NULL,
-	Email VARCHAR(30) NOT NULL,
+	Salary money_type, --Could be NULL if newly hired, promoted or demoted/suspended
+	Address address_type NOT NULL, 
+	PhoneNumber phone_type NOT NULL,
+	Email email_type NOT NULL,
 
-	CONSTRAINT UA_constraint UNIQUE (EmployeeID, PhoneNumber, Email),
+	CONSTRAINT UA_constraint UNIQUE (PhoneNumber, Email),
 	PRIMARY KEY (EmployeeID)
 	--NO FK
 );
@@ -181,10 +179,10 @@ CREATE TABLE Administration(
 
 
 CREATE TABLE KitchenStation (
-	StationName VARCHAR(25) NOT NULL,
+	StationName name_type NOT NULL,
 	Number_of_Chefs INTEGER, --Could be NULL if station newly created or about to be closed
 	Specialization VARCHAR(30) NOT NULL,
-	ManagerID INTEGER NOT NULL,
+	ManagerID id_type NOT NULL,
 
 
 	CONSTRAINT UK_constraint UNIQUE (StationName, ManagerID), --Constraint Unique kitchen 
@@ -207,6 +205,4 @@ CREATE TABLE EmergencyContact(
 	--FOREIGN KEY Dep_EmployeeID REFERENCES Waiter(EmployeeID) ON DELETE CASCADE,
 	--FOREIGN KEY Dep_EmployeeID REFERENCES DeliveryDriver(EmployeeID) ON DELETE CASCADE,
 	--FOREIGN KEY Dep_EmployeeID REFERENCES Chef(EmployeeID) ON DELETE CASCADE,
-
-
 );
