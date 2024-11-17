@@ -70,11 +70,11 @@ create table image_meal(
 
 CREATE TABLE tables (
     table_ID id_type PRIMARY KEY,         
-    seat_capacity INT NOT NULL CHECK (Value>=0),          
-    availability BOOLEAN NOT NULL,        
-     waiter_id id_type --fk to waiter
-      
+    seat_capacity INT NOT NULL CHECK (seat_capacity>=0),          
+    availability BOOLEAN NOT NULL,
+	waiter_id id_type --fk to waiter
 );
+
 
 CREATE TABLE menu (
     menu_ID id_type PRIMARY KEY,         
