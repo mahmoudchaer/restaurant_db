@@ -155,7 +155,7 @@ CREATE TABLE AssignedLocations(
 	Address address_type NOT NULL,
 	Delivery_EmployeeID id_type, --We could have a location not yet assigned to a driver or if the driver responsible for it just quit
 
-	CONSTRAINT UL_constraint UNIQUE (LocationID),   --Constraint Unique location ID
+	CONSTRAINT Location_constraint UNIQUE (LocationID),   --Constraint Unique location ID
 	PRIMARY KEY (LocationID),
 	FOREIGN KEY (Delivery_EmployeeID) REFERENCES DeliveryDriver(EmployeeID) ON DELETE SET NULL
 	
@@ -171,7 +171,8 @@ CREATE TABLE Administration(
 	PhoneNumber phone_type NOT NULL,
 	Email email_type NOT NULL,
 
-	CONSTRAINT UA_constraint UNIQUE (PhoneNumber, Email),
+	CONSTRAINT Phone_constraint UNIQUE (PhoneNumber),
+	CONSTRAINT Email_constraint UNIQUE (Email),
 	PRIMARY KEY (EmployeeID)
 	--NO FK
 );
@@ -185,7 +186,8 @@ CREATE TABLE KitchenStation (
 	ManagerID id_type NOT NULL,
 
 
-	CONSTRAINT UK_constraint UNIQUE (StationName, ManagerID), --Constraint Unique kitchen 
+	CONSTRAINT Station_constraint UNIQUE (StationName),
+	CONSTRAINT Manager_constraint UNIQUE (ManagerID),
 	PRIMARY KEY (StationName)
 	--FOREIGN KEY ManagerID REFERENCES Chef(EmployeeID) ON DELETE SET NULL
 );
@@ -201,7 +203,7 @@ CREATE TABLE EmergencyContact(
 
 	--NO UNIQUE CONSTRAINT AS TWO EMPLOYEES CAN HAVE THE SAME EMERGENCY CONTACT, SAY IF THEY WERE RELATED 
 	--AND THE SAME EMPPLOYEE CAN HAVE MULTIPLE EMERGENCY CONTACTS
-	CONSTRAINT PK_EContact PRIMARY KEY (ContactName, Dep_EmployeeID)
+	CONSTRAINT PK_constraint PRIMARY KEY (ContactName, dep_EmployeeID)
 	--FOREIGN KEY Dep_EmployeeID REFERENCES Waiter(EmployeeID) ON DELETE CASCADE,
 	--FOREIGN KEY Dep_EmployeeID REFERENCES DeliveryDriver(EmployeeID) ON DELETE CASCADE,
 	--FOREIGN KEY Dep_EmployeeID REFERENCES Chef(EmployeeID) ON DELETE CASCADE,
