@@ -1,17 +1,18 @@
 --Mahmoud
 
 CREATE TABLE Customer (
-    Customer_ID id_type  PRIMARY KEY,
+    Customer_ID id_type PRIMARY KEY,
     Address address_type,
     -- Avg_Rating DECIMAL(4, 1), --derived attribute
-    Points INT,
+    Points INT ,
     cust_Name name_type  not null,
     Phone_Number phone_type,
     Email email_type,
     Table_ID INT, -- Foreign key references id of table
     CONSTRAINT Customer_constraint UNIQUE (Customer_ID),
     CONSTRAINT Customer_constraint UNIQUE (PhoneNumber),
-    CONSTRAINT Customer_constraint UNIQUE (Email)
+    CONSTRAINT Customer_constraint UNIQUE (Email),
+	
 );
 
 CREATE TABLE Payment_Method (
@@ -50,7 +51,7 @@ Create table Ingredient (
 
 create table meal(
 	meal_name name_type  primary key,
-	cost_meal money_type  (3,1) not null,
+	cost_meal money_type not null,
 	recipe description_type not null,
 	price money_type  not null,
 	category varchar (50) not null,
