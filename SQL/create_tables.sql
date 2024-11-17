@@ -9,8 +9,7 @@ CREATE TABLE Customer (
     Phone_Number phone_type,
     Email email_type,
     Table_ID INT, -- Foreign key references id of table
-    CONSTRAINT Phone_constraint UNIQUE (Phone_Number),
-    CONSTRAINT Email_constraint UNIQUE (Email)
+    CONSTRAINT Phone_constraint UNIQUE (Phone_Number, Email),
 	
 );
 
@@ -186,8 +185,7 @@ CREATE TABLE Administration(
 	PhoneNumber phone_type NOT NULL,
 	Email email_type NOT NULL,
 
-	CONSTRAINT Phone_constraint UNIQUE (PhoneNumber),
-	CONSTRAINT Email_constraint UNIQUE (Email),
+	CONSTRAINT Phone_constraint UNIQUE (PhoneNumber, Email),
 	PRIMARY KEY (EmployeeID)
 	--NO FK
 );
@@ -201,8 +199,7 @@ CREATE TABLE KitchenStation (
 	ManagerID id_type NOT NULL,
 
 
-	CONSTRAINT Station_constraint UNIQUE (StationName),
-	CONSTRAINT Manager_constraint UNIQUE (ManagerID),
+	CONSTRAINT Station_constraint UNIQUE (StationName, ManagerID),
 	PRIMARY KEY (StationName)
 	--FOREIGN KEY ManagerID REFERENCES Chef(EmployeeID) ON DELETE SET NULL
 );
@@ -210,11 +207,11 @@ CREATE TABLE KitchenStation (
 
 
 CREATE TABLE EmergencyContact(
-	ContactName VARCHAR(25) NOT NULL,
+	ContactName name_type  NOT NULL,
 	Relation VARCHAR(20) NOT NULL,
 	Priority INTEGER NOT NULL,
-	Phone_Number INTEGER NOT NULL,
-	Dep_EmployeeID INTEGER NOT NULL,
+	Phone_Number phone_type  NOT NULL,
+	Dep_EmployeeID id_type  NOT NULL,
 
 	--NO UNIQUE CONSTRAINT AS TWO EMPLOYEES CAN HAVE THE SAME EMERGENCY CONTACT, SAY IF THEY WERE RELATED 
 	--AND THE SAME EMPPLOYEE CAN HAVE MULTIPLE EMERGENCY CONTACTS
