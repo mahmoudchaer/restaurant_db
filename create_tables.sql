@@ -58,7 +58,8 @@ create table meal(
 
 create table image_meal(
 	image_id int primary key,
-	image varchar(255) not null
+	image varchar(255) not null,
+	image_meal int
     -- FOREIGN KEY (meal_name) REFERENCES meal(meal_name)
 
 
