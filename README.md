@@ -1,5 +1,5 @@
 
-# Bakri's Big Burgers - Database Management System ![Project Logo](images/logo.png)
+# Bakri's Big Burgers - Database Management System ![Project Logo](images/logo_bbb.png)
 
 
 This project presents a comprehensive database management system (DBMS) designed for **Bakri's Big Burgers**, a restaurant that serves as a prototype for managing complex operations in the food service industry.
