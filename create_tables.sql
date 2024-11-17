@@ -14,8 +14,8 @@ CREATE TABLE Customer (
 CREATE TABLE Payment_Method (
     Payment_ID INT PRIMARY KEY,
     Payment_Type VARCHAR(50) ,
-    Customer_ID INT,
-    FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID) on delete cascade
+    Customer_ID INT
+    -- FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID) on delete cascade
 );
 
 CREATE TABLE Review (
@@ -23,16 +23,16 @@ CREATE TABLE Review (
     Customer_ID INT, 
     Rating DECIMAL(3, 1) not null,
     Description TEXT,
-    constraint pk_comp_cust_review PRIMARY KEY (Review_ID, Customer_ID),
-    FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID) on delete cascade
+    constraint pk_comp_cust_review PRIMARY KEY (Review_ID, Customer_ID)
+    -- FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID) on delete cascade
 );
 
 CREATE TABLE Image_Review (
     Image_ID INT PRIMARY KEY,
     Image VARCHAR(255) not null, 
     Review_Number INT,
-    Customer_ID INT,
-    FOREIGN KEY (Review_Number, Customer_ID) REFERENCES Review(Review_ID, Customer_ID) on delete cascade
+    Customer_ID INT
+    -- FOREIGN KEY (Review_Number, Customer_ID) REFERENCES Review(Review_ID, Customer_ID) on delete cascade
 );
 
 Create table Ingredient (
@@ -58,8 +58,8 @@ create table meal(
 
 create table image_meal(
 	image_id int primary key,
-	image varchar(255) not null,
-    FOREIGN KEY (meal_name) REFERENCES meal(meal_name)
+	image varchar(255) not null
+    -- FOREIGN KEY (meal_name) REFERENCES meal(meal_name)
 
 
 );
@@ -78,9 +78,8 @@ CREATE TABLE menu (
 CREATE TABLE menu_day (
     menu_ID INT NOT NULL,               
     day VARCHAR(15) NOT NULL,           
-    PRIMARY KEY (menu_ID, day),         
-    FOREIGN KEY (menu_ID) REFERENCES menu(menu_ID) 
-        ON DELETE CASCADE               
+    PRIMARY KEY (menu_ID, day)      
+    -- FOREIGN KEY (menu_ID) REFERENCES menu(menu_ID) ON DELETE CASCADE               
 );
 
 CREATE TABLE orders (
@@ -108,9 +107,6 @@ CREATE TABLE chef (
     hire_date DATE,            
     CV TEXT,                            
     supervisor_id INT,
-    works_in int, --fk works_in to kitchen_station
-    FOREIGN KEY (supervisor_id) REFERENCES chef(employee_id) 
-        ON DELETE SET NULL               
-
-    
+    works_in int --fk works_in to kitchen_station
+    -- FOREIGN KEY (supervisor_id) REFERENCES chef(employee_id) ON DELETE SET NULL               
 );
