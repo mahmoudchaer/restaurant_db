@@ -68,6 +68,14 @@ create table image_meal(
 
 -- omar
 
+CREATE TABLE tables (
+    table_ID id_type PRIMARY KEY,         
+    seat_capacity INT NOT NULL CHECK (Value>=0),          
+    availability BOOLEAN NOT NULL,        
+     waiter_id id_type --fk to waiter
+      
+);
+
 CREATE TABLE menu (
     menu_ID id_type PRIMARY KEY,         
     start_time time_type NOT NULL,           
@@ -93,13 +101,6 @@ CREATE TABLE orders (
     delivery_driver_id id_type --fk delivery_driver to delivery driver
 );
 
-CREATE TABLE tables (
-    table_ID id_type PRIMARY KEY,         
-    seat_capacity INT NOT NULL CHECK (Value>=0),          
-    availability BOOLEAN NOT NULL,        
-     waiter_id id_type -- fk waiter_ID to waiter
-      
-);
 
 CREATE TABLE chef (
     employee_id id_type PRIMARY KEY,      
@@ -119,11 +120,8 @@ CREATE TABLE waiter (
     CV description_type,                             
     salary money_type NOT NULL,      
     hire_date DATE NOT NULL,            
-    supervisor_id id_type,                  
-    FOREIGN KEY (supervisor_id) REFERENCES waiter(employee_id) 
-        ON DELETE SET NULL               
-
-            
+    supervisor_id id_type                 
+    -- FOREIGN KEY (supervisor_id) REFERENCES waiter(employee_id) ON DELETE SET NULL                         
 );
 --Hussein
 
