@@ -9,9 +9,8 @@ CREATE TABLE Customer (
     Phone_Number phone_type,
     Email email_type,
     Table_ID INT, -- Foreign key references id of table
-    CONSTRAINT Customer_constraint UNIQUE (Customer_ID),
-    CONSTRAINT Customer_constraint UNIQUE (PhoneNumber),
-    CONSTRAINT Customer_constraint UNIQUE (Email),
+    CONSTRAINT Phone_constraint UNIQUE (Phone_Number),
+    CONSTRAINT Email_constraint UNIQUE (Email)
 	
 );
 
@@ -115,7 +114,7 @@ CREATE TABLE chef (
     -- FOREIGN KEY (supervisor_id) REFERENCES chef(employee_id) ON DELETE SET NULL               
 );
 
--Hussein
+--Hussein
 
 CREATE TABLE Supplier (
 	SupplierID id_type NOT NULL, 
