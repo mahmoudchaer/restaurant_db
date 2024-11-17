@@ -109,7 +109,7 @@ CREATE TABLE chef (
     hire_date DATE,            
     CV description_type,                            
     supervisor_id id_type,
-    works_in id_type --fk works_in to kitchen_station
+    works_in name_type  --fk works_in to kitchen_station
     -- FOREIGN KEY (supervisor_id) REFERENCES chef(employee_id) ON DELETE SET NULL               
 );
 
