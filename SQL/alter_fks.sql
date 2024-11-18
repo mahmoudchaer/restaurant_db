@@ -24,14 +24,14 @@ add constraint fk_menu_day
 foreign key (menu_id) references menu(menu_id) on delete cascade;
 
 -- add foreign key to orders for customer_id
-alter table orders 
+alter table customer_order 
 add constraint fk_orders_customer 
 foreign key (customer_id) references customer(customer_id);
 
 -- add foreign key to orders for delivery_driver_id
-alter table orders 
+alter table customer_order 
 add constraint fk_orders_driver 
-foreign key (delivery_driver_id) references deliverydriver(employeeid );
+foreign key (delivery_driver_id) references delivery_driver(employee_id);
 
 -- add foreign key to tables for waiter_id
 alter table tables 
@@ -46,43 +46,43 @@ foreign key (supervisor_id) references chef(employee_id) on delete set null;
 -- add foreign key to chef for works_in
 alter table chef 
 add constraint fk_chef_kitchen 
-foreign key (works_in) references kitchenstation (stationname);
+foreign key (works_in) references kitchen_station (stationname);
 
 alter table product 
 add constraint fk_product_supplier 
-foreign key (supplier_id) references supplier(supplier_id ) on delete set null; 
+foreign key (supplier_id) references supplier(supplier_id ); 
 
 
 alter table assigned_locations 
 add constraint fk_assigned_locations_driver 
-foreign key (delivery_employee_id) references delivery_driver(employee_id ) on delete set null; 
+foreign key (delivery_employee_id) references delivery_driver(employee_id ); 
 
 
 alter table delivery_driver 
 add constraint fk_driver_waiter 
-foreign key (waiter_contact) references waiter(employee_id ) on delete set null;
+foreign key (waiter_contact) references waiter(employee_id );
 
 
 alter table delivery_driver 
 add constraint fk_driver_waiter 
-foreign key (waiter_contact) references waiter(employee_id ) on delete set null;
+foreign key (waiter_contact) references waiter(employee_id );
 
 
 alter table emergency_contact 
 add constraint fk_emergency_waiter 
-foreign key (dep_employee_id) references waiter(employee_id ) on delete cascade;
+foreign key (dep_employee_id) references waiter(employee_id );
 
 
 alter table emergency_contact 
 add constraint fk_emergency_driver 
-foreign key (dep_employee_id) references delivery_driver(employee_id ) on delete cascade;
+foreign key (dep_employee_id) references delivery_driver(employee_id );
 
 
 alter table emergency_contact 
 add constraint fk_emergency_chef 
-foreign key (dep_employee_id) references chef(employee_id ) on delete cascade;
+foreign key (dep_employee_id) references chef(employee_id );
 
 
 alter table kitcehen_station 
 add constraint fk_kitchen_chef 
-foreign key (manager_id) references chef(employee_id ) on delete set null;
+foreign key (manager_id) references chef(employee_id );
