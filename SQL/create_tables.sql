@@ -36,7 +36,7 @@ CREATE TABLE payment_method (
 );
 
 CREATE TABLE review (
-    review_id id_type, 
+    review_id id_type UNIQUE, 
     customer_id id_type, 
     rating rating_type not null,
     description description_type,
