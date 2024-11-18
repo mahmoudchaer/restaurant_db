@@ -81,3 +81,7 @@ foreign key (dep_employee_id) references chef(employee_id ) on delete cascade;
 alter table kitchen_station 
 add constraint fk_kitchen_chef 
 foreign key (manager_id) references chef(employee_id ) on delete set null;
+
+alter table customer 
+add constraint fk_customer 
+foreign key (table_id) references tables(table_id ) on delete set null;
