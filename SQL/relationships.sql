@@ -2,8 +2,8 @@ create table creates (
     administration id_type,
     supplier id_type,
     primary key (administration, supplier),
-    foreign key (administration) references administration(employeeid) on delete cascade,    
-    foreign key (supplier) references supplier(supplierid) on delete cascade
+    foreign key (administration) references administration(employee_id) on delete cascade,    
+    foreign key (supplier) references supplier(supplier_id) on delete cascade
 );
 
 
@@ -35,5 +35,5 @@ create table supplies (
     contract_until date,
     primary key (ingredient, supplier),
     foreign key (ingredient) references ingredient(inventory_id) on delete cascade,  
-    foreign key (supplier) references supplier(supplierid) on delete cascade
+    foreign key (supplier) references supplier(supplier_id) on delete cascade
 );
