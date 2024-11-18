@@ -111,7 +111,7 @@ CREATE TABLE menu_day (
     -- foreign key (menu_id) references menu(menu_id) on delete cascade               
 );
 
-CREATE TABLE  cust_order (
+CREATE TABLE  customer_order (
     order_id id_type,
     date TIMESTAMP not null,       
     status varchar(20) not null,
