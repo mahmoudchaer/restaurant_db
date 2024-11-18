@@ -76,9 +76,8 @@ CREATE TABLE meal (
 );
 
 CREATE TABLE image_meal (
-    image_id id_type primary key,
-    image image_type not null,
-    meal_name name_type 
+    image BYTEA primary key,
+    meal_name name_type,
     -- foreign key (meal_name) references meal(meal_name)
 );
 
