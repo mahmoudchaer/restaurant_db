@@ -40,21 +40,44 @@ create table supplies (
 
 
 CREATE TABLE shift (
-    administration_id id_type NOT NULL,                -- FK to administration
-    employee_id id_type NOT NULL,                      -- FK to employee_base
-    start_time TIME NOT NULL,
-    end_time TIME NOT NULL,
-    PRIMARY KEY (administration_id, employee_id, start_time, end_time),
-    FOREIGN KEY (administration_id) REFERENCES administration(employee_id) ON DELETE CASCADE,
-    FOREIGN KEY (employee_id) REFERENCES employee_base(employee_id) ON DELETE CASCADE
+    admin_id id_type,                      
+    chef_id id_type,                                
+    waiter_id id_type,                             
+    start_time TIME NOT NULL,                   
+    end_time TIME NOT NULL,                     
+    PRIMARY KEY (admin_id, chef_id, waiter_id), 
+    FOREIGN KEY (admin_id) REFERENCES administration(employee_id) ON DELETE CASCADE,
+    FOREIGN KEY (chef_id) REFERENCES chef(employee_id) ON DELETE CASCADE,
+    FOREIGN KEY (waiter_id) REFERENCES waiter(employee_id) ON DELETE CASCADE,
+    CONSTRAINT check_shift_employee CHECK (chef_id IS NOT NULL OR waiter_id IS NOT NULL) 
 );
 
-CREATE TABLE hires (
-    hr_id id_type NOT NULL,                           -- FK to hr
-    employee_id id_type NOT NULL,                     -- FK to employee_base
-    PRIMARY KEY (hr_id, employee_id),
+
+CREATE TABLE hires_waiter (
+    hr_id id_type,                                                                     
+    waiter_id id_type,                                                                                               
+    PRIMARY KEY (hr_id, waiter_id), 
     FOREIGN KEY (hr_id) REFERENCES hr(employee_id) ON DELETE CASCADE,
-    FOREIGN KEY (employee_id) REFERENCES employee_base(employee_id) ON DELETE CASCADE
+    FOREIGN KEY (waiter_id) REFERENCES waiter(employee_id) ON DELETE CASCADE 
+);
+
+
+CREATE TABLE hires_chef (
+    hr_id id_type,                               
+    chef_id id_type,                                                                                                 
+    PRIMARY KEY (hr_id, chef_id), 
+    FOREIGN KEY (hr_id) REFERENCES hr(employee_id) ON DELETE CASCADE,
+    FOREIGN KEY (chef_id) REFERENCES chef(employee_id) ON DELETE CASCADE
+    
+);
+
+
+CREATE TABLE hires_driver (
+    hr_id id_type,                                                                 
+    delivery_driver_id id_type,                                                            
+    PRIMARY KEY (hr_id,delivery_driver_id), 
+    FOREIGN KEY (hr_id) REFERENCES hr(employee_id) ON DELETE CASCADE,
+    FOREIGN KEY (delivery_driver_id) REFERENCES delivery_driver(employee_id) ON DELETE CASCADE
 );
 
 
@@ -85,7 +108,13 @@ create table places(
     FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON DELETE CASCADE,
     FOREIGN KEY (order_id) REFERENCES customer_order(order_id) ON DELETE CASCADE
     
-);    
+);  
+ 
+
+
+
+
+
 
 
 
