@@ -37,3 +37,47 @@ create table supplies (
     foreign key (ingredient) references ingredient(inventory_id) on delete cascade,  
     foreign key (supplier) references supplier(supplier_id) on delete cascade
 );
+
+
+CREATE TABLE shift (
+    admin_id id_type NOT NULL,                      
+    chef_id id_type,                                
+    waiter_id id_type,                             
+    start_time time_type NOT NULL,                   
+    end_time time_type NOT NULL,                     
+    PRIMARY KEY (admin_id, chef_id, waiter_id), 
+    FOREIGN KEY (admin_id) REFERENCES administration(employee_id) ON DELETE CASCADE,
+    FOREIGN KEY (chef_id) REFERENCES chef(employee_id) ON DELETE CASCADE,
+    FOREIGN KEY (waiter_id) REFERENCES waiter(employee_id) ON DELETE CASCADE,
+    CONSTRAINT check_shift_employee CHECK (chef_id IS NOT NULL OR waiter_id IS NOT NULL) 
+);
+
+CREATE TABLE hires (
+    hr_id id_type NOT NULL,                               
+    chef_id id_type,                                      
+    waiter_id id_type,                                    
+    delivery_driver_id id_type,                                                            
+    PRIMARY KEY (hr_id, chef_id, waiter_id, delivery_driver_id), 
+    FOREIGN KEY (hr_id) REFERENCES hr(employee_id) ON DELETE CASCADE,
+    FOREIGN KEY (chef_id) REFERENCES chef(employee_id) ON DELETE CASCADE,
+    FOREIGN KEY (waiter_id) REFERENCES waiter(employee_id) ON DELETE CASCADE,
+    FOREIGN KEY (delivery_driver_id) REFERENCES delivery_driver(employee_id) ON DELETE CASCADE,
+    CONSTRAINT check_hire_employee CHECK (chef_id IS NOT NULL OR waiter_id IS NOT NULL OR delivery_driver_id IS NOT NULL) 
+);
+
+CREATE TABLE contacts (
+    admin_id id_type NOT NULL,                   
+    supplier_id id_type NOT NULL,                                            
+    PRIMARY KEY (admin_id, supplier_id), 
+    FOREIGN KEY (admin_id) REFERENCES administration(employee_id) ON DELETE CASCADE,
+    FOREIGN KEY (supplier_id) REFERENCES supplier(supplier_id) ON DELETE CASCADE
+);
+
+CREATE TABLE contain (
+    order_id id_type NOT NULL,               
+    meal_name name_type NOT NULL,              
+    quantity quantity_type NOT NULL,
+    PRIMARY KEY (order_id, meal_name), 
+    FOREIGN KEY (order_id) REFERENCES customer_order(order_id) ON DELETE CASCADE,
+    FOREIGN KEY (meal_name) REFERENCES meal(meal_name) ON DELETE CASCADE
+);
