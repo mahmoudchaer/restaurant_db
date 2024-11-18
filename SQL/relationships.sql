@@ -41,7 +41,7 @@ create table supplies (
 
 CREATE TABLE chef_shift (
     administration_id id_type NOT NULL,              
-    chef_id INT id_type NULL,                        
+    chef_id id_type NULL,                        
     start_time TIME NOT NULL,                    
     end_time TIME NOT NULL,                     
     PRIMARY KEY (administration_id, chef_id),     
@@ -116,7 +116,6 @@ create table places(
     
 );  
  
-
 
 
 
