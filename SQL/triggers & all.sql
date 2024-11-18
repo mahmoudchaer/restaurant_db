@@ -26,3 +26,21 @@ CREATE TRIGGER update_avg_rating_on_insert
 AFTER INSERT ON review
 FOR EACH ROW
 EXECUTE FUNCTION trigger_update_avg_rating();
+
+
+--employee base
+
+CREATE OR REPLACE FUNCTION insert_into_employee_base_for_chef()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO employee_base (employee_id, employee_type, chef_id)
+    VALUES (NEW.employee_id, 'chef', NEW.employee_id);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER after_chef_insert
+AFTER INSERT ON chef
+FOR EACH ROW
+EXECUTE FUNCTION insert_into_employee_base_for_chef();
+
