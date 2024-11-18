@@ -31,7 +31,7 @@ foreign key (customer_id) references customer(customer_id);
 -- add foreign key to orders for delivery_driver_id
 alter table orders 
 add constraint fk_orders_driver 
-foreign key (delivery_driver_id) references deliverydriver(employeeid );
+foreign key (delivery_driver_id) references delivery_driver(employee_id );
 
 -- add foreign key to tables for waiter_id
 alter table tables 
@@ -46,4 +46,4 @@ foreign key (supervisor_id) references chef(employee_id) on delete set null;
 -- add foreign key to chef for works_in
 alter table chef 
 add constraint fk_chef_kitchen 
-foreign key (works_in) references kitchenstation (stationname);
+foreign key (works_in) references kitchen_station (stationname);
