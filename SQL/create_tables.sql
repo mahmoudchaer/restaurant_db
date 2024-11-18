@@ -111,11 +111,11 @@ CREATE TABLE menu_day (
     -- foreign key (menu_id) references menu(menu_id) on delete cascade               
 );
 
-CREATE TABLE order (
-    order_id id_type,     
-    date TIMESTAMP not null,        
-    status varchar(20) not null,     
-    priority INTEGER CHECK (priority>0 AND priority<11),     
+CREATE TABLE  cust_order (
+    order_id id_type,
+    date TIMESTAMP not null,       
+    status varchar(20) not null,
+    priority INTEGER CHECK (priority>0 AND priority<11),
     customer_id id_type, -- fk customer_id to customer
     delivery_driver_id id_type, --fk delivery_driver to delivery driver
 
