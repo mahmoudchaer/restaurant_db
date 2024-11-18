@@ -91,8 +91,8 @@ CREATE TABLE contacts (
     admin_id id_type ,                   
     supplier_id id_type,                                            
     PRIMARY KEY (admin_id, supplier_id), 
-    FOREIGN KEY (admin_id) REFERENCES administration(employee_id) ON DELETE CASCADE,
-    FOREIGN KEY (supplier_id) REFERENCES supplier(supplier_id) ON DELETE CASCADE
+    FOREIGN KEY (admin_id) REFERENCES administration(employee_id) ON DELETE set null,
+    FOREIGN KEY (supplier_id) REFERENCES supplier(supplier_id) ON DELETE set null
 );
 
 CREATE TABLE contain (
