@@ -10,7 +10,7 @@ CREATE TABLE customer (
     table_id int, -- foreign key references id of table
 	
     CONSTRAINT phone_email_constraint_cust unique (phone_number, email),
-	CONSTRAINT pk_customer PRIMARY KEY (customer_id)
+    CONSTRAINT pk_customer PRIMARY KEY (customer_id)
 );
 
 CREATE TABLE hr (
@@ -23,7 +23,7 @@ CREATE TABLE hr (
     phone_number phone_type,
 	
     CONSTRAINT phone_email_constraint_hr unique (phone_number, email),
-	CONSTRAINT pk_hr PRIMARY KEY (employee_id)
+    CONSTRAINT pk_hr PRIMARY KEY (employee_id)
 );
 
 CREATE TABLE payment_method (
@@ -32,7 +32,7 @@ CREATE TABLE payment_method (
     customer_id id_type,
     -- foreign key (customer_id) references customer(customer_id) on delete cascade
 
-	CONSTRAINT pk_payment_method PRIMARY KEY (payment_id)
+    CONSTRAINT pk_payment_method PRIMARY KEY (payment_id)
 );
 
 CREATE TABLE review (
@@ -49,7 +49,7 @@ CREATE TABLE image_review (
     image image_type, 
     review_number int,
 
-	CONSTRAINT pk_image_review PRIMARY KEY (image,review_number)
+    CONSTRAINT pk_image_review PRIMARY KEY (image,review_number)
     -- foreign key (review_number, customer_id) references review(review_id, customer_id) on delete cascade
 );
 
@@ -60,7 +60,7 @@ CREATE TABLE ingredient (
     stock_qty quantity_type not null,
     ingr_name name_type not null,
 
-	CONSTRAINT pk_ingredient PRIMARY KEY (inventory_id)
+    CONSTRAINT pk_ingredient PRIMARY KEY (inventory_id)
 );
 
 CREATE TABLE meal (
@@ -69,10 +69,10 @@ CREATE TABLE meal (
     recipe description_type not null,
     price money_type not null,
     category varchar(50) not null,
-    description description_type not null
+    description description_type not null,
     --avg_cook_time time, --derived
-
-	CONSTRAINT pk_meal PRIMARY KEY (meal_name)
+	
+    CONSTRAINT pk_meal PRIMARY KEY (meal_name)
 );
 
 CREATE TABLE image_meal (
@@ -88,19 +88,19 @@ CREATE TABLE tables (
     table_id id_type,         
     seat_capacity int not null check (seat_capacity>=0),          
     availability boolean not null,
-    waiter_id id_type --fk to waiter
+    waiter_id id_type, --fk to waiter
 
-	CONSTRAINT pk_tables PRIMARY KEY (table_id)
+    CONSTRAINT pk_tables PRIMARY KEY (table_id)
 );
 
 CREATE TABLE menu (
-    menu_id id_type primary key,         
+    menu_id id_type,         
     start_time time_type not null,           
     end_time time_type not null,             
     category varchar(255) not null,      
     image image_type,
 
-	CONSTRAINT pk_menu PRIMARY KEY (menu_id)
+    CONSTRAINT pk_menu PRIMARY KEY (menu_id)
 );
 
 CREATE TABLE menu_day (
@@ -111,15 +111,15 @@ CREATE TABLE menu_day (
     -- foreign key (menu_id) references menu(menu_id) on delete cascade               
 );
 
-CREATE TABLE  customer_order (
-    order_id id_type,
-    date TIMESTAMP not null,       
-    status varchar(20) not null,
-    priority INTEGER CHECK (priority>0 AND priority<11),
+CREATE TABLE customer_order (
+    order_id id_type,     
+    date TIMESTAMP not null,        
+    status varchar(20) not null,     
+    priority INTEGER CHECK (priority>0 AND priority<11),     
     customer_id id_type, -- fk customer_id to customer
     delivery_driver_id id_type, --fk delivery_driver to delivery driver
 
-	CONSTRAINT pk_order PRIMARY KEY (order_id)
+    CONSTRAINT pk_order PRIMARY KEY (order_id)
 );
 
 CREATE TABLE chef (
@@ -132,7 +132,7 @@ CREATE TABLE chef (
     works_in name_type,  --fk works_in to kitchen_station
     -- foreign key (supervisor_id) references chef(employee_id) on delete set null    
 
-	CONSTRAINT pk_chef PRIMARY KEY (employee_id)
+    CONSTRAINT pk_chef PRIMARY KEY (employee_id)
 );
 
 CREATE TABLE waiter (
@@ -145,7 +145,7 @@ CREATE TABLE waiter (
     supervisor_id id_type,                
     -- foreign key (supervisor_id) references waiter(employee_id) on delete set null    
 
-	CONSTRAINT pk_waiter PRIMARY KEY (employee_id)
+    CONSTRAINT pk_waiter PRIMARY KEY (employee_id)
 );
 
 --hussein
@@ -185,10 +185,8 @@ CREATE TABLE delivery_driver (
 
 CREATE TABLE assigned_locations (
     del_location id_type,
-    address address_type not null,
     delivery_employee_id id_type, --we could have a location not yet assigned to a driver or if the driver responsible for it just quit
 	
-    CONSTRAINT location_constraint UNIQUE (locationid),   --constraint unique location id
     CONSTRAINT pK_assigned_locations PRIMARY  KEY (del_location, delivery_employee_id)
     --foreign key (delivery_employeeid) references delivery_driver(employee_id) on delete set null
 );
