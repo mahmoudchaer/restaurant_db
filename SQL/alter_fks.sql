@@ -63,11 +63,6 @@ add constraint fk_driver_waiter
 foreign key (waiter_contact) references waiter(employee_id ) on delete set null;
 
 
-alter table emergency_contact 
-add constraint fk_employee_id 
-foreign key (employee_id) REFERENCES employee_base(employee_id) ON DELETE CASCADE;
-
-
 alter table kitchen_station 
 add constraint fk_kitchen_chef 
 foreign key (manager_id) references chef(employee_id ) on delete set null;
@@ -78,14 +73,14 @@ foreign key (table_id) references tables(table_id ) on delete set null;
 
 
 
-alter table emergency_contact 
-add constraint fk_chef_contact 
-foreign key (dep_employee_id) references chef(employee_id) on delete cascade;
+alter table emergency_contact_waiter 
+add constraint fk_emergency_contact_waiter 
+foreign key (chef_id) references chef(employee_id) on delete cascade;
 
-alter table emergency_contact 
-add constraint fk_ebase_delivery_driver 
-foreign key (dep_employee_id) references delivery_driver(employee_id) on delete cascade;
+alter table emergency_contact_chef 
+add constraint fk_emergency_contact_chef 
+foreign key (delivery_driver_id) references delivery_driver(employee_id) on delete cascade;
 
-alter table emergency_contact 
-add constraint fk_ebase_waiter
-foreign key (dep_employee_id) references waiter(employee_id) on delete cascade;
+alter table emergency_contact_delivery_driver 
+add constraint fk_emergency_contact_delivery_driver
+foreign key (waiter_id) references waiter(employee_id) on delete cascade;
