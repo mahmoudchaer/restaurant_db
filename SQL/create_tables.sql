@@ -1,9 +1,15 @@
 --mahmoud
-
 CREATE TABLE employee_base (
     employee_id id_type PRIMARY KEY,
-    employee_type employee_type NOT NULL -- Domain with values ('chef', 'delivery driver', 'waiter')
+    employee_type employee_type NOT NULL,
+    chef_id id_type UNIQUE, -- FK to chef
+    delivery_driver_id id_type UNIQUE, -- FK to delivery_driver
+    waiter_id id_type UNIQUE, -- FK to waiter
+    CONSTRAINT fk_chef FOREIGN KEY (chef_id) REFERENCES chef(employee_id) ON DELETE CASCADE,
+    CONSTRAINT fk_delivery_driver FOREIGN KEY (delivery_driver_id) REFERENCES delivery_driver(employee_id) ON DELETE CASCADE,
+    CONSTRAINT fk_waiter FOREIGN KEY (waiter_id) REFERENCES waiter(employee_id) ON DELETE CASCADE
 );
+
 
 
 CREATE TABLE customer (
