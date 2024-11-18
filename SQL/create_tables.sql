@@ -4,8 +4,8 @@ CREATE TABLE customer (
     address address_type,
     -- avg_rating rating_type, --derived attribute
     points int,
-    cust_name name_type,
-    phone_number phone_type,
+    cust_name name_type not null,
+    phone_number phone_type not null,
     email email_type,
     table_id int, -- foreign key references id of table
 	
@@ -16,11 +16,11 @@ CREATE TABLE customer (
 CREATE TABLE hr (
     employee_id id_type,
     address address_type,
-    hr_name name_type,
+    hr_name name_type not null,
     salary money_type,
     hr_role varchar(50) not null,
     email email_type,
-    phone_number phone_type,
+    phone_number phone_type not null,
 	
     CONSTRAINT phone_email_constraint_hr unique (phone_number, email),
     CONSTRAINT pk_hr PRIMARY KEY (employee_id)
@@ -28,8 +28,8 @@ CREATE TABLE hr (
 
 CREATE TABLE payment_method (
     payment_id id_type,
-    payment_type varchar(50),
-    customer_id id_type,
+    payment_type varchar(50) not null,
+    customer_id id_type not null,
     -- foreign key (customer_id) references customer(customer_id) on delete cascade
 
     CONSTRAINT pk_payment_method PRIMARY KEY (payment_id)
@@ -50,7 +50,7 @@ CREATE TABLE image_review (
     review_number int,
 
     CONSTRAINT pk_image_review PRIMARY KEY (image,review_number)
-    -- foreign key (review_number, customer_id) references review(review_id, customer_id) on delete cascade
+    -- foreign key (review_number) references review(review_id) on delete cascade
 );
 
 CREATE TABLE ingredient (
@@ -67,7 +67,7 @@ CREATE TABLE meal (
     meal_name name_type,
     cost_meal money_type not null,
     recipe description_type not null,
-    price money_type not null,
+    price money_type,
     category varchar(50) not null,
     description description_type not null,
     --avg_cook_time time, --derived
@@ -76,9 +76,11 @@ CREATE TABLE meal (
 );
 
 CREATE TABLE image_meal (
-    image BYTEA primary key,
-    meal_name name_type
+    image image_type,
+    meal_name name_type not null,
     -- foreign key (meal_name) references meal(meal_name)
+
+	CONSTRAINT pk_image_meal PRIMARY KEY (image)
 );
 
 -- omar
@@ -94,8 +96,8 @@ CREATE TABLE tables (
 
 CREATE TABLE menu (
     menu_id id_type,         
-    start_time time_type not null,           
-    end_time time_type not null,             
+    start_time TIME not null,           
+    end_time TIME not null,             
     category varchar(255) not null,      
     image image_type,
 
@@ -103,8 +105,8 @@ CREATE TABLE menu (
 );
 
 CREATE TABLE menu_day (
-    menu_id id_type not null,               
-    day_of_week varchar(15) not null,
+    menu_id id_type,               
+    day_of_week varchar(15),
 	
     CONSTRAINT pk_menu_day PRIMARY KEY (menu_id, day_of_week)      
     -- foreign key (menu_id) references menu(menu_id) on delete cascade               
@@ -122,11 +124,12 @@ CREATE TABLE customer_order (
 );
 
 CREATE TABLE chef (
-    employee_id id_type,      
+    employee_id id_type,
+    chef_name name_type not null,      
     chef_role varchar(50) not null,          
-    salary money_type not null,     
-    hire_date date,            
-    cv description_type,                            
+    salary money_type,     
+    hire_date date not null,            
+    cv description_type not null,                            
     supervisor_id id_type,
     works_in name_type,  --fk works_in to kitchen_station
     -- foreign key (supervisor_id) references chef(employee_id) on delete set null    
@@ -137,8 +140,8 @@ CREATE TABLE chef (
 CREATE TABLE waiter (
     employee_id id_type,      
     waiter_role varchar(50) not null,           
-    waiter_name name_type,          
-    cv description_type,                             
+    waiter_name name_type not null,          
+    cv description_type not null,                             
     salary money_type,      
     hire_date date not null,            
     supervisor_id id_type,                
@@ -154,7 +157,7 @@ CREATE TABLE supplier (
     name_supp name_type,
     address address_type not null,
     phone_number phone_type not null,
-    email email_type not null,
+    email email_type,
 	
     CONSTRAINT us_constraint unique (phone_number, email), -- constraint unique supplier
     CONSTRAINT pk_supplier PRIMARY KEY (supplier_id)
@@ -174,8 +177,7 @@ CREATE TABLE delivery_driver (
     driver_name name_type not null,
     contact_info phone_type not null,
     vehicle_type varchar(10) not null,
-    average_rating rating_type,
-    waiter_contact id_type not null,
+    waiter_contact id_type,
 	
     CONSTRAINT udd_constraint unique (contact_info),  --constraint unique delivery driver
     CONSTRAINT pk_delivery_driver primary key (employee_id)
@@ -183,7 +185,7 @@ CREATE TABLE delivery_driver (
 );
 
 CREATE TABLE assigned_locations (
-    del_location id_type,
+    del_location VARCHAR(255),
     delivery_employee_id id_type, --we could have a location not yet assigned to a driver or if the driver responsible for it just quit
 	
     CONSTRAINT pK_assigned_locations PRIMARY  KEY (del_location, delivery_employee_id)
@@ -197,7 +199,7 @@ CREATE TABLE administration (
     salary money_type, --could be null if newly hired, promoted or demoted/suspended
     address address_type not null, 
     phone_number phone_type not null,
-    email email_type not null,
+    email email_type,
 	
     CONSTRAINT phone_email_constraint_adm UNIQUE (phone_number, email),
     CONSTRAINT pk_administration PRIMARY KEY (employee_id)
@@ -208,7 +210,7 @@ CREATE TABLE kitchen_station (
     station_name name_type not null,
     number_of_chefs integer, --could be null if station newly created or about to be closed
     specialization varchar(30) not null,
-    manager_id id_type not null,
+    manager_id id_type,
 	
     CONSTRAINT station_mngr_kitchen_unique UNIQUE (station_name, manager_id),
     CONSTRAINT pk_kitchen_station PRIMARY KEY (station_name)
