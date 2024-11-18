@@ -93,3 +93,6 @@ create table places(
     FOREIGN KEY (order_id) REFERENCES customer_order(order_id) ON DELETE CASCADE
     
 );    
+
+
+
