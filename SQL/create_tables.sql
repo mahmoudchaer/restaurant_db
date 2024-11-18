@@ -225,6 +225,7 @@ CREATE TABLE emergency_contact (
     waiter_id id_type,
 	chef_id id_type ,
 	delivery_driver_id id_type,
+	employee_type name_type,
 	
     --no unique constraint as two employees can have the same emergency contact, say if they were related 
     --and the same employee can have multiple emergency contacts
