@@ -4,10 +4,8 @@ CREATE TABLE employee_base (
     employee_type employee_type NOT NULL,
     chef_id id_type UNIQUE, -- FK to chef
     delivery_driver_id id_type UNIQUE, -- FK to delivery_driver
-    waiter_id id_type UNIQUE, -- FK to waiter
-    CONSTRAINT fk_chef FOREIGN KEY (chef_id) REFERENCES chef(employee_id) ON DELETE CASCADE,
-    CONSTRAINT fk_delivery_driver FOREIGN KEY (delivery_driver_id) REFERENCES delivery_driver(employee_id) ON DELETE CASCADE,
-    CONSTRAINT fk_waiter FOREIGN KEY (waiter_id) REFERENCES waiter(employee_id) ON DELETE CASCADE
+    waiter_id id_type UNIQUE -- FK to waiter
+   
 );
 
 
@@ -221,7 +219,7 @@ CREATE TABLE administration (
 
 CREATE TABLE kitchen_station (
     station_name name_type not null,
-    number_of_chefs integer, --could be null if station newly created or about to be closed
+    number_of_chefs quantity_type, --could be null if station newly created or about to be closed
     specialization varchar(30) not null,
     manager_id id_type,
 	
@@ -236,5 +234,5 @@ CREATE TABLE emergency_contact (
     relation varchar(20) NOT NULL,
     priority INTEGER NOT NULL,
     phone_number phone_type NOT NULL,
-    employee_id id_type,
+    employee_id id_type
 );
