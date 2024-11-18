@@ -228,14 +228,35 @@ CREATE TABLE kitchen_station (
     --foreign key managerid references chef(employeeid) on delete set null
 );
 
-CREATE TABLE emergency_contact (
-    contact_name VARCHAR(25) NOT NULL,
+CREATE TABLE emergency_contact_waiter (
+    contact_name name_type NOT NULL,
     relation VARCHAR(20) NOT NULL,
     priority INTEGER NOT NULL,
-    phone_number INTEGER NOT NULL,
-    dep_employee_id INTEGER NOT NULL,
-    employee_type VARCHAR(20) NOT NULL,
+    phone_number phone_type NOT NULL,
+    waiter_id id_type,
     
-    PRIMARY KEY (contact_name, dep_employee_id, employee_type),
-    CONSTRAINT check_employee_type CHECK (employee_type IN ('chef', 'waiter', 'delivery_driver'))
+    PRIMARY KEY (contact_name, waiter_id)
 );
+
+CREATE TABLE emergency_contact_chef (
+    contact_name name_type NOT NULL,
+    relation VARCHAR(20) NOT NULL,
+    priority INTEGER NOT NULL,
+    phone_number phone_type NOT NULL,
+    chef_id id_type,
+    
+    PRIMARY KEY (contact_name, chef_id)
+);
+
+CREATE TABLE emergency_contact_delivery_driver (
+    contact_name name_type NOT NULL,
+    relation VARCHAR(20) NOT NULL,
+    priority INTEGER NOT NULL,
+    phone_number phone_type NOT NULL,
+    delivery_driver_id id_type,
+    
+    PRIMARY KEY (contact_name, delivery_driver_id)
+);
+
+
+
