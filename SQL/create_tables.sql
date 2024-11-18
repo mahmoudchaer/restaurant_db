@@ -1,4 +1,11 @@
 --mahmoud
+
+CREATE TABLE employee_base (
+    employee_id id_type PRIMARY KEY,
+    employee_type employee_type NOT NULL -- Domain with values ('chef', 'delivery driver', 'waiter')
+);
+
+
 CREATE TABLE customer (
     customer_id id_type,
     address address_type,
