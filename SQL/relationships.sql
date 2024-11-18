@@ -1,9 +1,9 @@
 create table creates (
-    administration id_type,
-    supplier id_type,
-    primary key (administration, supplier),
-    foreign key (administration) references administration(employee_id) on delete cascade,    
-    foreign key (supplier) references supplier(supplier_id) on delete cascade
+    menu_id id_type,
+    chef_id id_type,
+    primary key (menu_id, chef_id),
+    foreign key (menu_id) references menu(menu_id) on delete cascade,    
+    foreign key (chef_id) references chef(employee_id) on delete cascade
 );
 
 
