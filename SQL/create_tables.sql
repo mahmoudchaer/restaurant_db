@@ -222,15 +222,13 @@ CREATE TABLE emergency_contact (
     relation varchar(20) not null,
     priority integer not null,
     phone_number phone_type not null,
-    waiter_id id_type,
-	chef_id id_type ,
-	delivery_driver_id id_type,
+    dep_employee_id id_type,
 	employee_type employee_type,
 	
     --no unique constraint as two employees can have the same emergency contact, say if they were related 
     --and the same employee can have multiple emergency contacts
 	
-    CONSTRAINT pk_emergency_contact PRIMARY KEY (contact_name, dep_employee_id)
+    CONSTRAINT pk_emergency_contact PRIMARY KEY (contact_name, dep_employee_id, employee_type)
     --foreign key dep_employeeid references waiter(employeeid) on delete cascade,
     --foreign key dep_employeeid references deliverydriver(employeeid) on delete cascade,
     --foreign key dep_employeeid references chef(employeeid) on delete cascade,
