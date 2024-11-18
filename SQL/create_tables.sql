@@ -218,11 +218,14 @@ CREATE TABLE kitchen_station (
 );
 
 CREATE TABLE emergency_contact (
-    contact_name varchar(25) not null,
+    contact_name name_type not null,
     relation varchar(20) not null,
     priority integer not null,
-    phone_number integer not null,
-    dep_employee_id integer not null,
+    phone_number phone_type not null,
+    waiter_id id_type,
+	chef_id id_type ,
+	delivery_driver_id id_type,
+	
     --no unique constraint as two employees can have the same emergency contact, say if they were related 
     --and the same employee can have multiple emergency contacts
 	
