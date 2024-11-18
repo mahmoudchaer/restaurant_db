@@ -65,17 +65,17 @@ foreign key (waiter_contact) references waiter(employee_id ) on delete set null;
 
 alter table emergency_contact 
 add constraint fk_emergency_waiter 
-foreign key (dep_employee_id) references waiter(employee_id ) on delete cascade;
+foreign key (waiter_id) references waiter(employee_id) on delete cascade;
 
 
 alter table emergency_contact 
 add constraint fk_emergency_driver 
-foreign key (dep_employee_id) references delivery_driver(employee_id ) on delete cascade;
+foreign key (delivery_driver_id) references delivery_driver(employee_id ) on delete cascade;
 
 
 alter table emergency_contact 
 add constraint fk_emergency_chef 
-foreign key (dep_employee_id) references chef(employee_id ) on delete cascade;
+foreign key (chef_id) references chef(employee_id ) on delete cascade;
 
 
 alter table kitchen_station 
