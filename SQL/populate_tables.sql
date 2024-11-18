@@ -304,7 +304,7 @@ VALUES
 
 
 
-INSERT INTO emergency_contact (contact_name, relation, priority, phone_number, dep_employee_id)
+INSERT INTO emergency_contact_waiter (contact_name, relation, priority, phone_number, waiter_id)
 VALUES 
     -- Chefs (IDs 1 to 20)
     ('Mona Khalil', 'Spouse', 1, 70012345, 1),
@@ -351,5 +351,104 @@ VALUES
     ('Mona Rami', 'Parent', 4, 76121097, 8),
     ('Omar Saade', 'Spouse', 1, 78110986, 9),
     ('Hala Fares', 'Parent', 2, 81109865, 10);
+
+INSERT INTO emergency_contact_chef (contact_name, relation, priority, phone_number, chef_id)
+VALUES 
+    -- Chefs (IDs 1 to 20)
+    ('Mona Khalil', 'Spouse', 1, 70012345, 1),
+    ('Fadi Mansour', 'Parent', 2, 71123456, 2),
+    ('Sara Nassar', 'Sibling', 3, 76134567, 3),
+    ('Ali Chidiac', 'Friend', 4, 78145678, 4),
+    ('Nour Hariri', 'Parent', 1, 81156789, 5),
+    ('Rita Saad', 'Spouse', 2, 70167890, 6),
+    ('Hassan Jaber', 'Sibling', 3, 71178901, 7),
+    ('Layla Fares', 'Friend', 4, 76189012, 8),
+    ('Ahmad Youssef', 'Parent', 1, 78190123, 9),
+    ('Omar Rami', 'Spouse', 2, 81101234, 10),
+    ('Kareem Haddad', 'Parent', 3, 70112345, 11),
+    ('Lina Khalil', 'Sibling', 4, 71123456, 12),
+    ('Sami Jaber', 'Friend', 1, 76134567, 13),
+    ('Nada Fares', 'Spouse', 2, 78145678, 14),
+    ('Hala Chidiac', 'Parent', 3, 81156789, 15),
+    ('Rami Saade', 'Sibling', 4, 70167890, 16),
+    ('Nour El Din', 'Friend', 1, 71178901, 17),
+    ('Maya Youssef', 'Spouse', 2, 76189012, 18),
+    ('Jad Fares', 'Parent', 3, 78190123, 19),
+    ('Samer Haddad', 'Friend', 4, 81101234, 20),
+
+    -- Waiters (IDs 1 to 10)
+    ('Amira Mansour', 'Spouse', 1, 70098765, 1),
+    ('Fadi Hariri', 'Sibling', 2, 71187654, 2),
+    ('Leila Chidiac', 'Parent', 3, 76176543, 3),
+    ('Nour Saade', 'Friend', 4, 78165432, 4),
+    ('Omar Khalil', 'Parent', 1, 81154321, 5),
+    ('Rita Fares', 'Spouse', 2, 70143210, 6),
+    ('Hassan Mansour', 'Sibling', 3, 71132109, 7),
+    ('Layla Haddad', 'Friend', 4, 76121098, 8),
+    ('Ahmad Saad', 'Parent', 1, 78110987, 9),
+    ('Kareem Rami', 'Spouse', 2, 81109876, 10),
+
+    -- Delivery Drivers (IDs 1 to 10)
+    ('Rami Nassar', 'Parent', 1, 70098754, 1),
+    ('Sara Chidiac', 'Friend', 2, 71187643, 2),
+    ('Ali Hariri', 'Sibling', 3, 76176532, 3),
+    ('Nour Fares', 'Parent', 4, 78165421, 4),
+    ('Jad Khalil', 'Spouse', 1, 81154320, 5),
+    ('Rita Mansour', 'Sibling', 2, 70143209, 6),
+    ('Sami Youssef', 'Friend', 3, 71132108, 7),
+    ('Mona Rami', 'Parent', 4, 76121097, 8),
+    ('Omar Saade', 'Spouse', 1, 78110986, 9),
+    ('Hala Fares', 'Parent', 2, 81109865, 10);
+
+INSERT INTO emergency_contact_delivery_driver (contact_name, relation, priority, phone_number, delivery_driver_id)
+VALUES 
+    -- Chefs (IDs 1 to 20)
+    ('Mona Khalil', 'Spouse', 1, 70012345, 1),
+    ('Fadi Mansour', 'Parent', 2, 71123456, 2),
+    ('Sara Nassar', 'Sibling', 3, 76134567, 3),
+    ('Ali Chidiac', 'Friend', 4, 78145678, 4),
+    ('Nour Hariri', 'Parent', 1, 81156789, 5),
+    ('Rita Saad', 'Spouse', 2, 70167890, 6),
+    ('Hassan Jaber', 'Sibling', 3, 71178901, 7),
+    ('Layla Fares', 'Friend', 4, 76189012, 8),
+    ('Ahmad Youssef', 'Parent', 1, 78190123, 9),
+    ('Omar Rami', 'Spouse', 2, 81101234, 10),
+    ('Kareem Haddad', 'Parent', 3, 70112345, 11),
+    ('Lina Khalil', 'Sibling', 4, 71123456, 12),
+    ('Sami Jaber', 'Friend', 1, 76134567, 13),
+    ('Nada Fares', 'Spouse', 2, 78145678, 14),
+    ('Hala Chidiac', 'Parent', 3, 81156789, 15),
+    ('Rami Saade', 'Sibling', 4, 70167890, 16),
+    ('Nour El Din', 'Friend', 1, 71178901, 17),
+    ('Maya Youssef', 'Spouse', 2, 76189012, 18),
+    ('Jad Fares', 'Parent', 3, 78190123, 19),
+    ('Samer Haddad', 'Friend', 4, 81101234, 20),
+
+    -- Waiters (IDs 1 to 10)
+    ('Amira Mansour', 'Spouse', 1, 70098765, 1),
+    ('Fadi Hariri', 'Sibling', 2, 71187654, 2),
+    ('Leila Chidiac', 'Parent', 3, 76176543, 3),
+    ('Nour Saade', 'Friend', 4, 78165432, 4),
+    ('Omar Khalil', 'Parent', 1, 81154321, 5),
+    ('Rita Fares', 'Spouse', 2, 70143210, 6),
+    ('Hassan Mansour', 'Sibling', 3, 71132109, 7),
+    ('Layla Haddad', 'Friend', 4, 76121098, 8),
+    ('Ahmad Saad', 'Parent', 1, 78110987, 9),
+    ('Kareem Rami', 'Spouse', 2, 81109876, 10),
+
+    -- Delivery Drivers (IDs 1 to 10)
+    ('Rami Nassar', 'Parent', 1, 70098754, 1),
+    ('Sara Chidiac', 'Friend', 2, 71187643, 2),
+    ('Ali Hariri', 'Sibling', 3, 76176532, 3),
+    ('Nour Fares', 'Parent', 4, 78165421, 4),
+    ('Jad Khalil', 'Spouse', 1, 81154320, 5),
+    ('Rita Mansour', 'Sibling', 2, 70143209, 6),
+    ('Sami Youssef', 'Friend', 3, 71132108, 7),
+    ('Mona Rami', 'Parent', 4, 76121097, 8),
+    ('Omar Saade', 'Spouse', 1, 78110986, 9),
+    ('Hala Fares', 'Parent', 2, 81109865, 10);
+
+
+
 
 
