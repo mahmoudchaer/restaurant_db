@@ -22,6 +22,9 @@ CREATE DOMAIN name_type AS VARCHAR(30);
 
 CREATE DOMAIN image_type AS BYTEA;
 
+CREATE DOMAIN employee_type AS VARCHAR(20) CHECK (VALUE IN ('chef', 'delivery driver', 'waiter'));
+
+
 
 
 
