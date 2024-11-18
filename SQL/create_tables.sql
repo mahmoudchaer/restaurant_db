@@ -1,12 +1,5 @@
 --mahmoud
-CREATE TABLE employee_base (
-    employee_id id_type PRIMARY KEY,
-    employee_type employee_type NOT NULL,
-    chef_id id_type UNIQUE, -- FK to chef
-    delivery_driver_id id_type UNIQUE, -- FK to delivery_driver
-    waiter_id id_type UNIQUE -- FK to waiter
-   
-);
+
 
 
 
