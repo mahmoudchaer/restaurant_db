@@ -39,19 +39,25 @@ create table supplies (
 );
 
 
-CREATE TABLE shift (
-    admin_id id_type,                      
-    chef_id id_type,                                
-    waiter_id id_type,                             
-    start_time TIME NOT NULL,                   
+CREATE TABLE chef_shift (
+    administration_id id_type NOT NULL,              
+    chef_id INT id_type NULL,                        
+    start_time TIME NOT NULL,                    
     end_time TIME NOT NULL,                     
-    PRIMARY KEY (admin_id, chef_id, waiter_id), 
-    FOREIGN KEY (admin_id) REFERENCES administration(employee_id) ON DELETE CASCADE,
-    FOREIGN KEY (chef_id) REFERENCES chef(employee_id) ON DELETE CASCADE,
-    FOREIGN KEY (waiter_id) REFERENCES waiter(employee_id) ON DELETE CASCADE,
-    CONSTRAINT check_shift_employee CHECK (chef_id IS NOT NULL OR waiter_id IS NOT NULL) 
+    PRIMARY KEY (administration_id, chef_id),     
+    FOREIGN KEY (administration_id) REFERENCES administration(employee_id) ON DELETE CASCADE,
+    FOREIGN KEY (chef_id) REFERENCES chef(employee_id) ON DELETE CASCADE
 );
 
+CREATE TABLE waiter_shift (
+    administration_id id_type NOT NULL,             
+    waiter_id id_type NOT NULL,                      
+    start_time TIME NOT NULL,                    
+    end_time TIME NOT NULL,                     
+    PRIMARY KEY (administration_id, waiter_id),   
+    FOREIGN KEY (administration_id) REFERENCES administration(employee_id) ON DELETE CASCADE,
+    FOREIGN KEY (waiter_id) REFERENCES waiter(employee_id) ON DELETE CASCADE
+);
 
 CREATE TABLE hires_waiter (
     hr_id id_type,                                                                     
