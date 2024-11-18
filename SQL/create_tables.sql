@@ -6,7 +6,6 @@
 CREATE TABLE customer (
     customer_id id_type,
     address address_type,
-    -- avg_rating rating_type, --derived attribute
     points int,
     cust_name name_type not null,
     phone_number phone_type not null,
@@ -74,7 +73,6 @@ CREATE TABLE meal (
     price money_type,
     category varchar(50) not null,
     description description_type not null,
-    --avg_cook_time time, --derived
 	
     CONSTRAINT pk_meal PRIMARY KEY (meal_name)
 );
