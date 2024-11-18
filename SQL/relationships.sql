@@ -40,16 +40,22 @@ create table supplies (
 
 
 CREATE TABLE shift (
-    admin_id id_type,                      
-    chef_id id_type,                                
-    waiter_id id_type,                             
-    start_time time_type NOT NULL,                   
-    end_time time_type NOT NULL,                     
-    PRIMARY KEY (admin_id, chef_id, waiter_id), 
-    FOREIGN KEY (admin_id) REFERENCES administration(employee_id) ON DELETE CASCADE,
-    FOREIGN KEY (chef_id) REFERENCES chef(employee_id) ON DELETE CASCADE,
-    FOREIGN KEY (waiter_id) REFERENCES waiter(employee_id) ON DELETE CASCADE,
-    CONSTRAINT check_shift_employee CHECK (chef_id IS NOT NULL OR waiter_id IS NOT NULL) 
+    administration_id id_type NOT NULL,               
+    chef_id INT DEFAULT NULL,                     
+    waiter_id INT DEFAULT NULL,                   
+    delivery_driver_id INT DEFAULT NULL,          
+    start_time TIME NOT NULL,                     
+    end_time TIME NOT NULL,                       
+    PRIMARY KEY (
+        administration_id, 
+        COALESCE(chef_id, waiter_id, delivery_driver_id), 
+        start_time, 
+        end_time
+    ),                                            
+    FOREIGN KEY (administration_id) REFERENCES administration(employee_id) ON DELETE CASCADE,
+    FOREIGN KEY (chef_id) REFERENCES chef(employee_id) ON DELETE SET NULL,
+    FOREIGN KEY (waiter_id) REFERENCES waiter(employee_id) ON DELETE SET NULL,
+    FOREIGN KEY (delivery_driver_id) REFERENCES delivery_driver(employee_id) ON DELETE SET NULL
 );
 
 CREATE TABLE hires (
