@@ -231,20 +231,10 @@ CREATE TABLE kitchen_station (
 );
 
 CREATE TABLE emergency_contact (
-    contact_name name_type not null,
-    relation varchar(20) not null,
-    priority integer not null,
-    phone_number phone_type not null,
-    chef_id INT DEFAULT NULL,                      -- Foreign key to Chef, can be NULL
-    waiter_id INT DEFAULT NULL,                    -- Foreign key to Waiter, can be NULL
-    delivery_driver_id INT DEFAULT NULL,           -- Foreign key to Delivery Driver, can be NULL
-    Constraint pk_emergency_contact PRIMARY KEY (contact_name, COALESCE(chef_id, waiter_id, delivery_driver_id)), -- Composite key
-	
-	
-    --no unique constraint as two employees can have the same emergency contact, say if they were related 
-    --and the same employee can have multiple emergency contacts
-	
-    --foreign key dep_employeeid references waiter(employeeid) on delete cascade,
-    --foreign key dep_employeeid references deliverydriver(employeeid) on delete cascade,
-    --foreign key dep_employeeid references chef(employeeid) on delete cascade,
+    contact_id SERIAL PRIMARY KEY,
+    contact_name name_type NOT NULL,
+    relation varchar(20) NOT NULL,
+    priority INTEGER NOT NULL,
+    phone_number phone_type NOT NULL,
+    employee_id id_type,
 );
