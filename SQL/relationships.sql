@@ -40,7 +40,7 @@ create table supplies (
 
 
 CREATE TABLE shift (
-    admin_id id_type NOT NULL,                      
+    admin_id id_type,                      
     chef_id id_type,                                
     waiter_id id_type,                             
     start_time time_type NOT NULL,                   
@@ -53,7 +53,7 @@ CREATE TABLE shift (
 );
 
 CREATE TABLE hires (
-    hr_id id_type NOT NULL,                               
+    hr_id id_type,                               
     chef_id id_type,                                      
     waiter_id id_type,                                    
     delivery_driver_id id_type,                                                            
@@ -66,18 +66,30 @@ CREATE TABLE hires (
 );
 
 CREATE TABLE contacts (
-    admin_id id_type NOT NULL,                   
-    supplier_id id_type NOT NULL,                                            
+    admin_id id_type ,                   
+    supplier_id id_type,                                            
     PRIMARY KEY (admin_id, supplier_id), 
     FOREIGN KEY (admin_id) REFERENCES administration(employee_id) ON DELETE CASCADE,
     FOREIGN KEY (supplier_id) REFERENCES supplier(supplier_id) ON DELETE CASCADE
 );
 
 CREATE TABLE contain (
-    order_id id_type NOT NULL,               
-    meal_name name_type NOT NULL,              
-    quantity quantity_type NOT NULL,
+    order_id id_type ,               
+    meal_name name_type ,              
+    quantity quantity_type,
     PRIMARY KEY (order_id, meal_name), 
     FOREIGN KEY (order_id) REFERENCES customer_order(order_id) ON DELETE CASCADE,
     FOREIGN KEY (meal_name) REFERENCES meal(meal_name) ON DELETE CASCADE
 );
+
+
+create table places(
+    order_id id_type,
+    customer_id id_type,
+    waiter_id id_type,
+    primary key (waiter_id, customer_id, order_id),
+    FOREIGN KEY (waiter_id) REFERENCES waiter(employee_id) ON DELETE CASCADE,
+    FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON DELETE CASCADE,
+    FOREIGN KEY (order_id) REFERENCES customer_order(order_id) ON DELETE CASCADE
+    
+);    
