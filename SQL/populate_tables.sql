@@ -360,5 +360,191 @@ VALUES
     ('Hala Fares', 'Parent', 2, 81109865, 10);
 
 
+INSERT INTO creates (menu_id, chef_id)
+VALUES 
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5),
+    (6, 6),
+    (7, 7),
+    (8, 8),
+    (9, 9),
+    (10, 10);
 
+
+
+INSERT INTO cooks (chef, time_to_make, meal)
+VALUES 
+    (1, '00:45:00', 'Spaghetti Bolognese'),
+    (2, '00:30:00', 'Caesar Salad'),
+    (3, '01:00:00', 'Grilled Chicken Sandwich'),
+    (4, '00:40:00', 'Chocolate Cake'),
+    (5, '00:50:00', 'Margarita Pizza'),
+    (6, '00:25:00', 'Lentil Soup'),
+    (7, '00:35:00', 'Beef Burger'),
+    (8, '00:50:00', 'Tiramisu'),
+    (9, '01:10:00', 'Chicken Alfredo'),
+    (10, '00:30:00', 'Greek Salad');
+
+
+INSERT INTO composed_of (menu_id, meal_name)
+VALUES 
+    (1, 'Spaghetti Bolognese'),
+    (2, 'Caesar Salad'),
+    (3, 'Grilled Chicken Sandwich'),
+    (4, 'Chocolate Cake'),
+    (5, 'Margarita Pizza'),
+    (6, 'Lentil Soup'),
+    (7, 'Beef Burger'),
+    (8, 'Tiramisu'),
+    (9, 'Chicken Alfredo'),
+    (10, 'Greek Salad');
+
+
+INSERT INTO supplies (ingredient, supplier, supp_cost, delivery_time, contract_until)
+VALUES 
+    (1, 1, 50.00, '12:00:00', '2025-12-31'),
+    (2, 2, 30.00, '08:30:00', '2026-06-30'),
+    (3, 3, 20.00, '10:00:00', '2025-03-15'),
+    (4, 4, 40.00, '14:00:00', '2025-09-01'),
+    (5, 5, 35.00, '09:45:00', '2026-02-28'),
+    (6, 6, 25.00, '11:30:00', '2025-08-20'),
+    (7, 7, 45.00, '15:00:00', '2025-07-15'),
+    (8, 8, 28.00, '13:30:00', '2026-01-05'),
+    (9, 9, 22.00, '10:15:00', '2025-11-11'),
+    (10, 10, 55.00, '16:00:00', '2026-04-25');
+
+
+INSERT INTO chef_shift (administration_id, chef_id, start_time, end_time)
+VALUES 
+    (1, 1, '08:00:00', '16:00:00'),
+    (2, 2, '09:00:00', '17:00:00'),
+    (3, 3, '07:30:00', '15:30:00'),
+    (4, 4, '10:00:00', '18:00:00'),
+    (5, 5, '06:00:00', '14:00:00'),
+    (6, 6, '11:00:00', '19:00:00'),
+    (7, 7, '12:00:00', '20:00:00'),
+    (8, 8, '08:30:00', '16:30:00'),
+    (9, 9, '09:30:00', '17:30:00'),
+    (1, 10, '10:30:00', '18:30:00'),
+    (1, 11, '07:00:00', '15:00:00'),
+    (2, 12, '06:30:00', '14:30:00'),
+    (3, 13, '08:45:00', '16:45:00'),
+    (4, 14, '09:15:00', '17:15:00'),
+    (5, 15, '11:30:00', '19:30:00'),
+    (6, 16, '13:00:00', '21:00:00'),
+    (7, 17, '07:15:00', '15:15:00'),
+    (8, 18, '09:45:00', '17:45:00'),
+    (9, 19, '10:00:00', '18:00:00'),
+    (2, 20, '08:00:00', '16:00:00');
+
+
+INSERT INTO waiter_shift (administration_id, waiter_id, start_time, end_time)
+VALUES 
+    (1, 1, '08:00:00', '16:00:00'),  -- Administration supervising a waiter during this shift
+    (2, 2, '09:00:00', '17:00:00'),
+    (3, 3, '07:30:00', '15:30:00'),
+    (4, 4, '10:00:00', '18:00:00'),
+    (5, 5, '06:00:00', '14:00:00'),
+    (6, 6, '11:00:00', '19:00:00'),
+    (7, 7, '12:00:00', '20:00:00'),
+    (8, 8, '08:30:00', '16:30:00'),
+    (9, 9, '09:30:00', '17:30:00'),
+    (10, 10, '10:30:00', '18:30:00');
+
+
+INSERT INTO hires_waiter (hr_id, waiter_id)
+VALUES 
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5),
+    (6, 6),
+    (7, 7),
+    (8, 8),
+    (9, 9),
+    (10, 10);
+
+
+INSERT INTO hires_chef (hr_id, chef_id)
+VALUES 
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5),
+    (6, 6),
+    (7, 7),
+    (8, 8),
+    (9, 9),
+    (10, 10),
+    (1, 11),
+    (2, 12),
+    (3, 13),
+    (4, 14),
+    (5, 15),
+    (6, 16),
+    (7, 17),
+    (8, 18),
+    (9, 19),
+    (10, 20);
+
+
+INSERT INTO hires_driver (hr_id, delivery_driver_id)
+VALUES 
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5),
+    (6, 6),
+    (7, 7),
+    (8, 8),
+    (9, 9),
+    (10, 10);
+
+
+INSERT INTO contacts (admin_id, supplier_id)
+VALUES 
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5),
+    (6, 6),
+    (7, 7),
+    (8, 8),
+    (9, 9),
+    (10, 10);
+
+
+INSERT INTO contain (order_id, meal_name, quantity)
+VALUES 
+    (1, 'Spaghetti Bolognese', 2),
+    (2, 'Caesar Salad', 1),
+    (3, 'Grilled Chicken Sandwich', 3),
+    (4, 'Chocolate Cake', 2),
+    (5, 'Margarita Pizza', 4),
+    (6, 'Lentil Soup', 1),
+    (7, 'Beef Burger', 2),
+    (8, 'Tiramisu', 3),
+    (9, 'Chicken Alfredo', 1),
+    (10, 'Greek Salad', 2);
+
+
+INSERT INTO places (order_id, customer_id, waiter_id)
+VALUES 
+    (1, 1, 1),
+    (2, 2, 2),
+    (3, 3, 3),
+    (4, 4, 4),
+    (5, 5, 5),
+    (6, 6, 6),
+    (7, 7, 7),
+    (8, 8, 8),
+    (9, 9, 9),
+    (10, 10, 10);
 
