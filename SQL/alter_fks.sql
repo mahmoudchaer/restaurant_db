@@ -24,12 +24,12 @@ add constraint fk_menu_day
 foreign key (menu_id) references menu(menu_id) on delete cascade;
 
 -- add foreign key to orders for customer_id
-alter table orders 
+alter table customer_order 
 add constraint fk_orders_customer 
 foreign key (customer_id) references customer(customer_id);
 
 -- add foreign key to orders for delivery_driver_id
-alter table orders 
+alter table customer_order 
 add constraint fk_orders_driver 
 foreign key (delivery_driver_id) references delivery_driver(employee_id );
 
