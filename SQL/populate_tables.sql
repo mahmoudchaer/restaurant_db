@@ -67,3 +67,15 @@ VALUES (1, 4, TRUE, 11),
        (9, 10, FALSE, 19),
        (10, 12, FALSE, 20);
 
+-- payment_method
+INSERT INTO payment_method (payment_id, payment_type, customer_id)
+VALUES (1, 'Credit Card', 1),
+       (2, 'Debit Card', 2),
+       (3, 'Cash', 3),
+       (4, 'PayPal', 4),
+       (5, 'Bank Transfer', 5),
+       (6, 'Google Pay', 6),
+       (7, 'Apple Pay', 7),
+       (8, 'Cryptocurrency', 8),
+       (9, 'Cash on Delivery', 9),
+       (10, 'Cheque', 10);
