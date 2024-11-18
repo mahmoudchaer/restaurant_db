@@ -229,10 +229,13 @@ CREATE TABLE kitchen_station (
 );
 
 CREATE TABLE emergency_contact (
-    contact_id SERIAL PRIMARY KEY,
-    contact_name name_type NOT NULL,
-    relation varchar(20) NOT NULL,
+    contact_name VARCHAR(25) NOT NULL,
+    relation VARCHAR(20) NOT NULL,
     priority INTEGER NOT NULL,
-    phone_number phone_type NOT NULL,
-    employee_id id_type
+    phone_number INTEGER NOT NULL,
+    dep_employee_id INTEGER NOT NULL,
+    employee_type VARCHAR(20) NOT NULL,
+    
+    PRIMARY KEY (contact_name, dep_employee_id, employee_type),
+    CONSTRAINT check_employee_type CHECK (employee_type IN ('chef', 'waiter', 'delivery_driver'))
 );
