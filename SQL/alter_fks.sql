@@ -75,3 +75,19 @@ foreign key (manager_id) references chef(employee_id ) on delete set null;
 alter table customer 
 add constraint fk_customer 
 foreign key (table_id) references tables(table_id ) on delete set null;
+
+
+
+alter table employee_base 
+add constraint fk_ebase_chef 
+foreign key (chef_id) references chef(employee_id ) on delete set cascade;
+
+alter table employee_base 
+add constraint fk_ebase_delivery_driver 
+foreign key (delivery_driver_id) references delivery_driver(employee_id) on delete set cascade;
+
+alter table employee_base 
+add constraint fk_ebase_waiter
+foreign key (waiter_id) references waiter(employee_id) on delete set cascade;
+
+
