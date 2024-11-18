@@ -78,14 +78,14 @@ foreign key (table_id) references tables(table_id ) on delete set null;
 
 
 
-alter table employee_base 
-add constraint fk_ebase_chef 
-foreign key (chef_id) references chef(employee_id ) on delete cascade;
+alter table emergency_contact 
+add constraint fk_chef_contact 
+foreign key (dep_employee_id) references chef(employee_id) on delete cascade;
 
-alter table employee_base 
+alter table emergency_contact 
 add constraint fk_ebase_delivery_driver 
-foreign key (delivery_driver_id) references delivery_driver(employee_id) on delete cascade;
+foreign key (dep_employee_id) references delivery_driver(employee_id) on delete cascade;
 
-alter table employee_base 
+alter table emergency_contact 
 add constraint fk_ebase_waiter
-foreign key (waiter_id) references waiter(employee_id) on delete cascade;
+foreign key (dep_employee_id) references waiter(employee_id) on delete cascade;
