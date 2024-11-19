@@ -17,11 +17,12 @@ where me.meal_name= co.meal_name
 group by me.meal_name
 order by sum(co.quantity) desc
 
--- get revenue and profit for last 12 months
+-- get revenue and profit for last 12 months from orders
 SELECT 
     TO_CHAR(co.date, 'YYYY-MM') AS month,
     SUM(me.price * c.quantity) AS total_revenue,
-    SUM((me.price - me.cost_meal) * c.quantity) AS total_profit
+    SUM((me.price - me.cost_meal) * c.quantity) AS total_profit,
+    Round((SUM((me.price - me.cost_meal) * c.quantity)) / (SUM(me.price * c.quantity)) * 100) AS percentage_profit
 FROM 
     customer_order co
 JOIN 
@@ -34,4 +35,5 @@ GROUP BY
     TO_CHAR(co.date, 'YYYY-MM')
 ORDER BY 
     month;
+
 
