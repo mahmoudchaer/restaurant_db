@@ -39,7 +39,7 @@ EXECUTE FUNCTION decrement_chef_count_function();
 
 --PROCEDURES
 
-CREATE PROCEDURE UpdateEmployeeSalary(
+CREATE PROCEDURE UpdateChefSalary(
     IN p_employee_id id_type ,
     IN new_salary DECIMAL
 )
@@ -52,6 +52,21 @@ BEGIN
 END;
 $$;
 
-CALL UpdateEmployeeSalary('C13', 5.00);
+CALL UpdateChefSalary('C13', 5.00);
+
+CREATE PROCEDURE UpdateWaiterSalary(
+    IN p_employee_id id_type ,
+    IN new_salary DECIMAL
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE waiter 
+    SET salary = new_salary
+    WHERE waiter.employee_id = p_employee_id;
+END;
+$$;
+
+CALL UpdateWaiterSalary('W5', 25.00);
 
 
