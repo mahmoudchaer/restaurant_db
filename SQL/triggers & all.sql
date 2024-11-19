@@ -69,4 +69,20 @@ $$;
 
 CALL UpdateWaiterSalary('W5', 25.00);
 
+CREATE or replace PROCEDURE raise_chef_salary(
+    station_name VARCHAR,
+    percentage_increase DECIMAL
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    -- Update salaries for chefs in the given kitchen station
+    UPDATE Chef
+    SET Salary = Salary + (Salary * (percentage_increase / 100))
+    WHERE works_in = station_name;
 
+    -- Notify about the success
+    RAISE NOTICE 'Salary updated for chefs in station: %', station_name;
+END;
+$$;
+CALL raise_chef_salary('Dessert Station', 1000.00);
