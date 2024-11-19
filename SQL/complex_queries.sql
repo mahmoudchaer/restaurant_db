@@ -68,5 +68,48 @@ FROM
 ORDER BY 
     net_profit DESC;
 
+--chef by performance from meals cooked
+WITH chef_revenue AS (
+    SELECT 
+        ch.employee_id AS chef_id,
+        ch.chef_name,
+        me.meal_name,
+        SUM(c.quantity * me.price) AS total_meal_revenue
+    FROM 
+        chef ch
+    JOIN 
+        creates cr ON ch.employee_id = cr.chef_id
+    JOIN 
+        composed_of co ON cr.menu_id = co.menu_id
+    JOIN 
+        contain c ON co.meal_name = c.meal_name
+    JOIN 
+        meal me ON c.meal_name = me.meal_name
+    GROUP BY 
+        ch.employee_id, ch.chef_name, me.meal_name
+),
+chef_performance AS (
+    SELECT 
+        chef_id,
+        chef_name,
+        SUM(total_meal_revenue) AS total_revenue_generated,
+        COUNT(meal_name) AS total_meals_created,
+        ROUND(AVG(total_meal_revenue), 2) AS avg_meal_revenue
+    FROM 
+        chef_revenue
+    GROUP BY 
+        chef_id, chef_name
+)
+SELECT 
+    chef_id,
+    chef_name,
+    total_revenue_generated,
+    total_meals_created,
+    avg_meal_revenue,
+    RANK() OVER (ORDER BY total_revenue_generated DESC) AS performance_rank
+FROM 
+    chef_performance
+ORDER BY 
+    performance_rank;
 
 
