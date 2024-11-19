@@ -68,7 +68,6 @@ CREATE TABLE meal (
     price money_type,
     category varchar(50) CONSTRAINT nn_meal_category NOT NULL,
     description description_type CONSTRAINT nn_meal_description NOT NULL,
-    --avg_cook_time time, --derived
 	
     CONSTRAINT pk_meal PRIMARY KEY (meal_name)
 );
