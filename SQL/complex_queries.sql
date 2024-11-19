@@ -9,3 +9,11 @@ FROM (
 ) AS subquery
 ORDER BY sal DESC
 LIMIT 3;
+
+-- find most and least ordered meals
+select me.meal_name mn, sum(co.quantity)
+from meal me, contain co
+where me.meal_name= co.meal_name
+group by me.meal_name
+order by sum(co.quantity) desc
+
