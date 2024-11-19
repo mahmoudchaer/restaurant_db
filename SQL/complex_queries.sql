@@ -10,6 +10,8 @@ FROM (
 ORDER BY sal DESC
 LIMIT 3;
 
+-- ----------------------------------------------------
+
 -- find most and least ordered meals
 select me.meal_name mn, sum(co.quantity)
 from meal me, contain co
@@ -68,6 +70,8 @@ FROM
 ORDER BY 
     net_profit DESC;
 
+-- ----------------------------------------------------
+
 --chef by performance from meals cooked
 WITH chef_revenue AS (
     SELECT 
@@ -113,3 +117,12 @@ ORDER BY
     performance_rank;
 
 
+-- ----------------------------------------------------
+
+
+-- Top 3 payment methods
+SELECT payment_type, COUNT(*) AS count
+FROM payment_method
+GROUP BY payment_type
+ORDER BY count DESC
+LIMIT 3;
