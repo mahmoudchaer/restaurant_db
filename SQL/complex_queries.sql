@@ -126,3 +126,18 @@ FROM payment_method
 GROUP BY payment_type
 ORDER BY count DESC
 LIMIT 3;
+
+-- ----------------------------------------------------
+
+
+--Most expensive 3 procducts in the inventory
+SELECT i.ingr_name,
+       s.ingredient,
+       s.supp_cost,
+       i.stock_qty,
+       (i.stock_qty * s.supp_cost) AS total_cost
+FROM ingredient i
+JOIN supplies s ON i.inventory_id = s.ingredient
+ORDER BY total_cost  DESC 
+LIMIT 3
+
