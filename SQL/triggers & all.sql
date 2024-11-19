@@ -212,11 +212,41 @@ $$;
 CALL ApplyRaiseGeneralChefSalary(1.22);
 
 
--- ----------------------------------------------------------
+
+-- -----------------------------------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------------------------------
 
 
+CREATE OR REPLACE VIEW employees AS
+SELECT 
+    employee_id,
+    chef_Name,
+    'Chef' AS Role,
+    Salary
+FROM chef
 
+UNION ALL
 
+SELECT 
+    employee_id,
+    waiter_Name,
+    'Waiter' AS Role,
+    Salary
+FROM Waiter
+
+UNION ALL
+
+SELECT 
+    employee_id,
+    driver_Name,
+    'Delivery Driver' AS Role,
+    0 Salary
+FROM Delivery_Driver;
+
+select *
+from employees
 
 
 
