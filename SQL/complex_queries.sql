@@ -17,3 +17,21 @@ where me.meal_name= co.meal_name
 group by me.meal_name
 order by sum(co.quantity) desc
 
+-- get revenue and profit for last 12 months
+SELECT 
+    TO_CHAR(co.date, 'YYYY-MM') AS month,
+    SUM(me.price * c.quantity) AS total_revenue,
+    SUM((me.price - me.cost_meal) * c.quantity) AS total_profit
+FROM 
+    customer_order co
+JOIN 
+    contain c ON co.order_id = c.order_id
+JOIN 
+    meal me ON c.meal_name = me.meal_name
+WHERE 
+    co.date >= NOW() - INTERVAL '12 months'
+GROUP BY 
+    TO_CHAR(co.date, 'YYYY-MM')
+ORDER BY 
+    month;
+
