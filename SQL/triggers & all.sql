@@ -1,4 +1,4 @@
-
+--TRIGGERS & FUNCTIONS
 
 --Increment number of chefs in the appropritate station by one each time a chef is added to a station
 CREATE OR REPLACE FUNCTION increment_chef_count_function()
@@ -37,5 +37,21 @@ EXECUTE FUNCTION decrement_chef_count_function();
 
 
 
+--PROCEDURES
+
+CREATE PROCEDURE UpdateEmployeeSalary(
+    IN p_employee_id id_type ,
+    IN new_salary DECIMAL
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE chef 
+    SET salary = new_salary
+    WHERE chef.employee_id = p_employee_id;
+END;
+$$;
+
+CALL UpdateEmployeeSalary('C13', 5.00);
 
 
