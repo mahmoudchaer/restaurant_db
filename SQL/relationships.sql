@@ -1,5 +1,5 @@
 create table creates (
-    menu_id id_type,
+    menu_id INTEGER,
     chef_id id_type,
     primary key (menu_id, chef_id),
     foreign key (menu_id) references menu(menu_id) on delete cascade,    
@@ -18,7 +18,7 @@ create table cooks (
 
 
 create table composed_of (
-    menu_id id_type,
+    menu_id INTEGER,
     meal_name name_type,
     primary key (menu_id, meal_name),
     foreign key (menu_id) references menu(menu_id) on delete cascade,  
@@ -28,7 +28,7 @@ create table composed_of (
 
 
 create table supplies (
-    ingredient id_type,
+    ingredient INTEGER,
     supplier id_type,
     supp_cost money_type not null,
     delivery_time time not null,
@@ -96,7 +96,7 @@ CREATE TABLE contacts (
 );
 
 CREATE TABLE contain (
-    order_id id_type ,               
+    order_id INTEGER ,               
     meal_name name_type ,              
     quantity quantity_type,
     PRIMARY KEY (order_id, meal_name), 
@@ -106,7 +106,7 @@ CREATE TABLE contain (
 
 
 create table places(
-    order_id id_type,
+    order_id INTEGER,
     customer_id id_type,
     waiter_id id_type,
     primary key (waiter_id, customer_id, order_id),
