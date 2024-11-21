@@ -192,7 +192,7 @@ CREATE TABLE administration (
     employee_id id_type,
     adm_name name_type CONSTRAINT nn_administration_adm_name NOT NULL,
     adm_role varchar(30), 
-    salary money_type CONSTRAINT chk_administration_salary_positive CHECK (salary >= 0),
+    salary money_type,
     address address_type CONSTRAINT nn_administration_address NOT NULL,
     phone_number phone_type CONSTRAINT nn_administration_phone_number NOT NULL,
     email email_type,
