@@ -116,21 +116,6 @@ FROM
 ORDER BY 
     performance_rank;
 
-
--- ----------------------------------------------------
-
-
-
--- Top 3 highest paid stations
-SELECT chef_role, sal
-FROM (
-    SELECT chef_role, SUM(salary) AS sal
-    FROM chef
-    GROUP BY chef_role
-) AS subquery
-ORDER BY sal DESC
-LIMIT 3;
-
 -- -------------------------------------------------------------
 
 
