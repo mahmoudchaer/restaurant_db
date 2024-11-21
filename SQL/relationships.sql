@@ -77,7 +77,16 @@ CREATE TABLE hires_chef (
     
 );
 
-
+CREATE TABLE is_made_of (
+    meal_id id_type,                               
+    ingredient_id id_type,                                                                                                 
+    PRIMARY KEY (ingredient_id, meal_id), 
+    quantity quantity_type,
+    cost money_type,
+    FOREIGN KEY (ingredient_id) REFERENCES ingredient(ingredient_id) ON DELETE CASCADE,
+    FOREIGN KEY (meal_id) REFERENCES meal(meal_id) ON DELETE CASCADE
+    
+);
 CREATE TABLE hires_driver (
     hr_id id_type,                                                                 
     delivery_driver_id id_type,                                                            
