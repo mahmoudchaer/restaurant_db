@@ -1,4 +1,4 @@
---complex queries (6)
+--complex queries (12)
 
 --get top 3 highest paid ROLES on average
 SELECT chef_role, sal
@@ -120,6 +120,20 @@ ORDER BY
 -- ----------------------------------------------------
 
 
+
+-- Top 3 highest paid stations
+SELECT chef_role, sal
+FROM (
+    SELECT chef_role, SUM(salary) AS sal
+    FROM chef
+    GROUP BY chef_role
+) AS subquery
+ORDER BY sal DESC
+LIMIT 3;
+
+-- -------------------------------------------------------------
+
+
 -- Top 3 payment methods
 SELECT payment_type, COUNT(*) AS count
 FROM payment_method
@@ -127,10 +141,9 @@ GROUP BY payment_type
 ORDER BY count DESC
 LIMIT 3;
 
--- ----------------------------------------------------
+-- -------------------------------------------------------------
 
-
---Most expensive 3 procducts in the inventory
+--Most expensive 3 products in the inventory
 SELECT i.ingr_name,
        s.ingredient,
        s.supp_cost,
@@ -140,4 +153,131 @@ FROM ingredient i
 JOIN supplies s ON i.inventory_id = s.ingredient
 ORDER BY total_cost  DESC 
 LIMIT 3
+
+-- ------------------------------------------------------------
+
+
+--Waiters that bring in the most revenue
+
+SELECT 
+    w.waiter_name AS Waiter,
+    SUM(m.price * c.quantity) AS Total_Revenue
+FROM 
+    waiter w
+JOIN 
+    places p ON w.employee_id = p.waiter_id
+JOIN 
+    contain c ON p.order_id = c.order_id
+JOIN 
+    meal m ON c.meal_name = m.meal_name
+GROUP BY 
+    w.waiter_name
+ORDER BY 
+    Total_Revenue DESC
+LIMIT 5;
+
+-- -------------------------------------------------------------
+ -- Show highest customer reviews alongside the meals they reviewed
+
+SELECT 
+    c.cust_name AS Customer,
+    r.rating AS Rating,
+    r.description AS Review_Description,
+    m.meal_name AS Meal
+FROM 
+    review r
+JOIN 
+    customer c ON r.customer_id = c.customer_id
+JOIN 
+    image_review ir ON r.review_id = ir.review_number
+JOIN 
+    image_meal im ON ir.image = im.image
+JOIN 
+    meal m ON im.meal_name = m.meal_name
+WHERE 
+    r.rating >= 4
+ORDER BY 
+    r.rating DESC
+
+-- ------------------------------------------------------------
+
+-- Show ingredients that need restocking, i.e. ingredients with stock lower than the minimum 
+
+SELECT 
+    ingr_name AS Ingredient,
+    stock_qty AS Stock,
+    minimum_quantity AS Minimum_Required
+FROM 
+    ingredient
+WHERE 
+    stock_qty < minimum_quantity
+ORDER BY 
+    stock_qty ASC;
+
+
+-- ------------------------------------------------------------
+
+-- Return shift hours of chefs from highest to lowest
+
+SELECT 
+    ch.chef_name AS Chef,
+    COUNT(cs.administration_id) AS Total_Shifts,
+    SUM(EXTRACT(EPOCH FROM (cs.end_time - cs.start_time))/3600) AS Total_Working_Hours
+FROM 
+    chef ch
+JOIN 
+    chef_shift cs ON ch.employee_id = cs.chef_id
+GROUP BY 
+    ch.chef_name
+ORDER BY 
+    Total_Working_Hours DESC;
+
+
+-- ------------------------------------------------------------
+
+-- Return most popular meal categories
+
+SELECT 
+    m.category AS Meal_Category,
+    COUNT(co.order_id) AS Total_Orders
+FROM 
+    meal m
+JOIN 
+    contain co ON m.meal_name = co.meal_name
+GROUP BY 
+    m.category
+ORDER BY 
+    Total_Orders DESC;
+
+
+
+-- ------------------------------------------------------------
+
+-- Calculate the total amount spent by each customer, including detailed payment methods.
+
+SELECT 
+    c.cust_name AS Customer,
+    SUM(m.price * co.quantity) AS Total_Spent,
+    pm.payment_type AS Payment_Method
+FROM 
+    customer c
+JOIN 
+    customer_order o ON c.customer_id = o.customer_id
+JOIN 
+    contain co ON o.order_id = co.order_id
+JOIN 
+    meal m ON co.meal_name = m.meal_name
+JOIN 
+    payment_method pm ON c.customer_id = pm.customer_id
+GROUP BY 
+    c.cust_name, pm.payment_type
+ORDER BY 
+    Total_Spent DESC;
+
+
+
+
+
+
+
 
