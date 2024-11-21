@@ -269,18 +269,18 @@ VALUES
     ('Aley Pine Forest Road', 'D8');
 
 
-INSERT INTO customer_order (order_id, date, status, priority, customer_id, delivery_driver_id)
+INSERT INTO customer_order (order_id, date, status, priority, customer_id, delivery_driver_id, price)
 VALUES 
-    (1, '2024-11-18 09:30:00', 'Pending', 5, 1, 'D1'),
-    (2, '2024-11-18 11:00:00', 'Completed', 8, 2, 'D2'),
-    (3, '2024-11-17 14:45:00', 'In Progress', 7, 3, 'D3'),
-    (4, '2024-11-17 17:00:00', 'Cancelled', 4, 4, 'D4'),
-    (5, '2024-11-16 08:15:00', 'Pending', 6, 5, 'D5'),
-    (6, '2024-11-16 13:00:00', 'Completed', 9, 6, 'D6'),
-    (7, '2024-11-15 15:30:00', 'In Progress', 3, 7, 'D7'),
-    (8, '2024-11-15 19:00:00', 'Pending', 2, 8, 'D8'),
-    (9, '2024-11-14 10:30:00', 'Completed', 10, 9, 'D9'),
-    (10, '2024-11-14 12:45:00', 'Cancelled', 1, 10, 'D10');
+    (1, '2024-11-18 09:30:00', 'Pending', 5, 1, 'D1', null),
+    (2, '2024-11-18 11:00:00', 'Completed', 8, 2, 'D2', null),
+    (3, '2024-11-17 14:45:00', 'In Progress', 7, 3, 'D3', null),
+    (4, '2024-11-17 17:00:00', 'Cancelled', 4, 4, 'D4', null),
+    (5, '2024-11-16 08:15:00', 'Pending', 6, 5, 'D5', null),
+    (6, '2024-11-16 13:00:00', 'Completed', 9, 6, 'D6', null),
+    (7, '2024-11-15 15:30:00', 'In Progress', 3, 7, 'D7', null),
+    (8, '2024-11-15 19:00:00', 'Pending', 2, 8, 'D8', null),
+    (9, '2024-11-14 10:30:00', 'Completed', 10, 9, 'D9', null),
+    (10, '2024-11-14 12:45:00', 'Cancelled', 1, 10, 'D10', null);
 
 
 INSERT INTO administration (employee_id, adm_name, adm_role, salary, address, phone_number, email)
