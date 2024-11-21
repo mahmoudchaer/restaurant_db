@@ -71,18 +71,18 @@ VALUES
 
 
     
-INSERT INTO ingredient (inventory_id, minimum_quantity, stock_qty, ingr_name)
+INSERT INTO ingredient (inventory_id, minimum_quantity,price ,stock_qty, ingr_name)
 VALUES 
-    (1, 10, 50, 'Flour'),
-    (2, 20, 100, 'Sugar'),
-    (3, 5, 30, 'Salt'),
-    (4, 15, 20, 'Butter'),
-    (5, 25, 80, 'Milk'),
-    (6, 10, 40, 'Eggs'),
-    (7, 8, 15, 'Vanilla Extract'),
-    (8, 12, 60, 'Yeast'),
-    (9, 6, 25, 'Baking Powder'),
-    (10, 18, 90, 'Cocoa Powder');
+    (1, 10, 0,50, 'Flour'),
+    (2, 20, 0,100, 'Sugar'),
+    (3, 5, 0,30, 'Salt'),
+    (4, 15, 0, 20, 'Butter'),
+    (5, 25, 0,80, 'Milk'),
+    (6, 10, 0,40, 'Eggs'),
+    (7, 8, 0,15, 'Vanilla Extract'),
+    (8, 12, 0,60, 'Yeast'),
+    (9, 6, 0,25, 'Baking Powder'),
+    (10, 18, 0,90, 'Cocoa Powder');
 
 
 INSERT INTO meal (meal_name, cost_meal, recipe, price, category, description)
@@ -400,16 +400,16 @@ VALUES
 
 INSERT INTO supplies (ingredient, supplier, supp_cost, delivery_time, contract_until)
 VALUES 
-    (1, 1, 50.00, '12:00:00', '2025-12-31'),
-    (2, 2, 30.00, '08:30:00', '2026-06-30'),
-    (3, 3, 20.00, '10:00:00', '2025-03-15'),
-    (4, 4, 40.00, '14:00:00', '2025-09-01'),
-    (5, 5, 35.00, '09:45:00', '2026-02-28'),
-    (6, 6, 25.00, '11:30:00', '2025-08-20'),
-    (7, 7, 45.00, '15:00:00', '2025-07-15'),
-    (8, 8, 28.00, '13:30:00', '2026-01-05'),
-    (9, 9, 22.00, '10:15:00', '2025-11-11'),
-    (10, 10, 55.00, '16:00:00', '2026-04-25');
+    (1, 1, 1.5, '12:00:00', '2025-12-31'),
+    (2, 2, 2.00, '08:30:00', '2026-06-30'),
+    (3, 3, 3.2, '10:00:00', '2025-03-15'),
+    (4, 4, 1.1, '14:00:00', '2025-09-01'),
+    (5, 5, 3.50, '09:45:00', '2026-02-28'),
+    (6, 6, 2.5, '11:30:00', '2025-08-20'),
+    (7, 7, 4.50, '15:00:00', '2025-07-15'),
+    (8, 8, 2.80, '13:30:00', '2026-01-05'),
+    (9, 9, 2.20, '10:15:00', '2025-11-11'),
+    (10, 10, 5.50, '16:00:00', '2026-04-25');
 
 
 INSERT INTO chef_shift (administration_id, chef_id, start_time, end_time)
