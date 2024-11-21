@@ -105,7 +105,7 @@ CREATE TABLE contacts (
 );
 
 CREATE TABLE contain (
-    order_id INTEGER ,               
+    order_id id_type ,               
     meal_name name_type ,              
     quantity quantity_type,
     PRIMARY KEY (order_id, meal_name), 
