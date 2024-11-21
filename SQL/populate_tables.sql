@@ -607,15 +607,15 @@ VALUES
 -- Chicken Alfredo
 INSERT INTO is_made_of (meal_id, ingredient_id, quantity, cost)
 VALUES
-    ('Chicken Alfredo', 1, 200, 0), -- Milk
-    ('Chicken Alfredo', 1, 50, 0),  -- Butter
-    ('Chicken Alfredo', 1, 5, 0);   -- Salt
+    ('Chicken Alfredo', 1, 2, 0), -- Milk
+    ('Chicken Alfredo', 2, 1, 0),  -- Butter
+    ('Chicken Alfredo', 3, 1, 0);   -- Salt
 
 -- Greek Salad
 INSERT INTO is_made_of (meal_id, ingredient_id, quantity, cost)
 VALUES
-    ('Greek Salad', 1, 100, 0), -- Milk
-    ('Greek Salad', 1, 5, 0);   -- Salt
+    ('Greek Salad', 1, 2, 0), -- Milk
+    ('Greek Salad', 2, 1, 0);   -- Salt
 
 
 
