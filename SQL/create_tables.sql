@@ -202,7 +202,7 @@ CREATE TABLE administration (
 );
 
 CREATE TABLE kitchen_station (
-    station_name name_type not null,
+    station_name name_type,
     number_of_chefs quantity_type, --could be null if station newly created or about to be closed
     specialization varchar(30) CONSTRAINT nn_kitchen_station_specialization NOT NULL,
     manager_id id_type,
