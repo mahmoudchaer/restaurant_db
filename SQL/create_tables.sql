@@ -114,7 +114,7 @@ CREATE TABLE customer_order (
     priority INTEGER CONSTRAINT chk_customer_order_priority_range CHECK (priority > 0 AND priority < 11),     
     customer_id id_type, -- fk customer_id to customer
     delivery_driver_id id_type, 
-
+    price money_type CONSTRAINT nn_customer_order_price NOT NULL
     CONSTRAINT pk_order PRIMARY KEY (order_id)
 );
 
