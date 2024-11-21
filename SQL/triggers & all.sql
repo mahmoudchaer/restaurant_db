@@ -69,6 +69,42 @@ ON contain
 FOR EACH ROW
 EXECUTE FUNCTION update_order_price();
 
+
+
+CREATE OR REPLACE FUNCTION calculate_ingredient_price(ingredient_id INTEGER)
+RETURNS money_type AS $$
+DECLARE
+    derived_price money_type;
+BEGIN
+    SELECT MIN(supp_cost)
+    INTO derived_price
+    FROM supplies
+    WHERE ingredient = ingredient_id;
+
+    RETURN derived_price;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION update_ingredient_price()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- Update the price in the ingredient table for the related ingredient
+    UPDATE ingredient
+    SET price = calculate_ingredient_price(NEW.ingredient)
+    WHERE inventory_id = NEW.ingredient;
+
+    RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_update_ingredient_price
+AFTER INSERT OR UPDATE OR DELETE
+ON supplies
+FOR EACH ROW
+EXECUTE FUNCTION update_ingredient_price();
+
+UPDATE ingredient
+SET price = calculate_ingredient_price(inventory_id);
 -- ----------------------------------------------------------------------------------------------------
 -- ----------------------------------------------------------------------------------------------------
 -- ----------------------------------------------------------------------------------------------------
