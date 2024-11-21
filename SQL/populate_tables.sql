@@ -546,77 +546,76 @@ VALUES
 -- Spaghetti Bolognese
 INSERT INTO is_made_of (meal_id, ingredient_id, quantity, cost)
 VALUES
-    ('Spaghetti Bolognese', 1, 200, NULL), -- Flour
-    ('Spaghetti Bolognese', 3, 5, NULL),  -- Salt
-    ('Spaghetti Bolognese', 5, 150, NULL), -- Milk
-    ('Spaghetti Bolognese', 4, 50, NULL);  -- Butter
+    ('Spaghetti Bolognese', 1, 200, 0), -- Flour
+    ('Spaghetti Bolognese', 3, 5, 0),  -- Salt
+    ('Spaghetti Bolognese', 5, 150, 0), -- Milk
+    ('Spaghetti Bolognese', 4, 50, 0);  -- Butter
 
 -- Caesar Salad
 INSERT INTO is_made_of (meal_id, ingredient_id, quantity, cost)
 VALUES
-    ('Caesar Salad', 5, 50, NULL),  -- Milk
-    ('Caesar Salad', 4, 30, NULL),  -- Butter
-    ('Caesar Salad', 6, 2, NULL),   -- Eggs
-    ('Caesar Salad', 3, 3, NULL);   -- Salt
+    ('Caesar Salad', 5, 50, 0),  -- Milk
+    ('Caesar Salad', 4, 30, 0),  -- Butter
+    ('Caesar Salad', 6, 2, 0),   -- Eggs
+    ('Caesar Salad', 3, 3, 0);   -- Salt
 
 -- Grilled Chicken Sandwich
 INSERT INTO is_made_of (meal_id, ingredient_id, quantity, cost)
 VALUES
-    ('Grilled Chicken Sandwich', 1, 300, NULL), -- Flour
-    ('Grilled Chicken Sandwich', 3, 5, NULL),   -- Salt
-    ('Grilled Chicken Sandwich', 5, 100, NULL), -- Milk
-    ('Grilled Chicken Sandwich', 6, 2, NULL);   -- Eggs
+    ('Grilled Chicken Sandwich', 1, 300, 0), -- Flour
+    ('Grilled Chicken Sandwich', 3, 5, 0),   -- Salt
+    ('Grilled Chicken Sandwich', 5, 100, 0), -- Milk
+    ('Grilled Chicken Sandwich', 6, 2, 0);   -- Eggs
 
 -- Chocolate Cake
 INSERT INTO is_made_of (meal_id, ingredient_id, quantity, cost)
 VALUES
-    ('Chocolate Cake', 1, 250, NULL), -- Flour
-    ('Chocolate Cake', 2, 100, NULL), -- Sugar
-    ('Chocolate Cake', 9, 5, NULL),   -- Baking Powder
-    ('Chocolate Cake', 10, 50, NULL); -- Cocoa Powder
+    ('Chocolate Cake', 1, 250, 0), -- Flour
+    ('Chocolate Cake', 2, 100, 0), -- Sugar
+    ('Chocolate Cake', 9, 5, 0),   -- Baking Powder
+    ('Chocolate Cake', 10, 50, 0); -- Cocoa Powder
 
 -- Margarita Pizza
 INSERT INTO is_made_of (meal_id, ingredient_id, quantity, cost)
 VALUES
-    ('Margarita Pizza', 1, 300, NULL), -- Flour
-    ('Margarita Pizza', 3, 5, NULL),   -- Salt
-    ('Margarita Pizza', 5, 100, NULL), -- Milk
-    ('Margarita Pizza', 8, 10, NULL);  -- Yeast
+    ('Margarita Pizza', 1, 300, 0), -- Flour
+    ('Margarita Pizza', 3, 5, 0),   -- Salt
+    ('Margarita Pizza', 5, 100, 0), -- Milk
+    ('Margarita Pizza', 8, 10, 0);  -- Yeast
 
 -- Lentil Soup
 INSERT INTO is_made_of (meal_id, ingredient_id, quantity, cost)
 VALUES
-    ('Lentil Soup', 3, 10, NULL),  -- Salt
-    ('Lentil Soup', 5, 200, NULL), -- Milk
-    ('Lentil Soup', 4, 50, NULL);  -- Butter
+    ('Lentil Soup', 3, 10, 0),  -- Salt
+    ('Lentil Soup', 5, 200, 0), -- Milk
+    ('Lentil Soup', 4, 50, 0);  -- Butter
 
 -- Beef Burger
 INSERT INTO is_made_of (meal_id, ingredient_id, quantity, cost)
 VALUES
-    ('Beef Burger', 1, 150, NULL), -- Flour
-    ('Beef Burger', 5, 100, NULL), -- Milk
-    ('Beef Burger', 3, 5, NULL);   -- Salt
+    ('Beef Burger', 1, 150, 0), -- Flour
+    ('Beef Burger', 5, 100, 0), -- Milk
+    ('Beef Burger', 3, 5, 0);   -- Salt
 
 -- Tiramisu
 INSERT INTO is_made_of (meal_id, ingredient_id, quantity, cost)
 VALUES
-    ('Tiramisu', 2, 150, NULL), -- Sugar
-    ('Tiramisu', 6, 5, NULL),   -- Eggs
-    ('Tiramisu', 7, 10, NULL);  -- Vanilla Extract
+    ('Tiramisu', 2, 150, 0), -- Sugar
+    ('Tiramisu', 6, 5, 0),   -- Eggs
+    ('Tiramisu', 7, 10, 0);  -- Vanilla Extract
 
 -- Chicken Alfredo
 INSERT INTO is_made_of (meal_id, ingredient_id, quantity, cost)
 VALUES
-    ('Chicken Alfredo', 5, 200, NULL), -- Milk
-    ('Chicken Alfredo', 4, 50, NULL),  -- Butter
-    ('Chicken Alfredo', 3, 5, NULL);   -- Salt
+    ('Chicken Alfredo', 5, 200, 0), -- Milk
+    ('Chicken Alfredo', 4, 50, 0),  -- Butter
+    ('Chicken Alfredo', 3, 5, 0);   -- Salt
 
 -- Greek Salad
 INSERT INTO is_made_of (meal_id, ingredient_id, quantity, cost)
 VALUES
-    ('Greek Salad', 5, 100, NULL), -- Milk
-    ('Greek Salad', 3, 5, NULL);   -- Salt
-
+    ('Greek Salad', 5, 100, 0), -- Milk
+    ('Greek Salad', 3, 5, 0);   -- Salt
 
 
 
