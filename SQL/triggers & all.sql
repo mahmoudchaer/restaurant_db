@@ -1,6 +1,5 @@
---TRIGGERS & FUNCTIONS
-
---Increment number of chefs in the appropritate station by one each time a chef is added to a station
+--Triggers (2)
+-- Increment chef count
 CREATE OR REPLACE FUNCTION increment_chef_count_function()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -17,8 +16,9 @@ AFTER INSERT ON chef
 FOR EACH ROW
 EXECUTE FUNCTION increment_chef_count_function();
 
+-- ---------------------------------------------------------------------------------------
 
--- Decrement chef count in the appropriate station whenever a chef is deleted
+-- Decrement chef count
 CREATE OR REPLACE FUNCTION decrement_chef_count_function()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -36,68 +36,12 @@ FOR EACH ROW
 EXECUTE FUNCTION decrement_chef_count_function();
 
 
-
 -- -----------------------------------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------------------------------
 
---Procedures
-
-CREATE PROCEDURE UpdateChefSalary(
-    IN p_employee_id id_type ,
-    IN new_salary DECIMAL
-)
-LANGUAGE plpgsql
-AS $$
-BEGIN
-    UPDATE chef 
-    SET salary = new_salary
-    WHERE chef.employee_id = p_employee_id;
-END;
-$$;
-
-CALL UpdateChefSalary('C13', 5.00);
-
-CREATE PROCEDURE UpdateWaiterSalary(
-    IN p_employee_id id_type ,
-    IN new_salary DECIMAL
-)
-LANGUAGE plpgsql
-AS $$
-BEGIN
-    UPDATE waiter 
-    SET salary = new_salary
-    WHERE waiter.employee_id = p_employee_id;
-END;
-$$;
-
-CALL UpdateWaiterSalary('W5', 25.00);
-
-CREATE or replace PROCEDURE raise_chef_salary(
-    station_name VARCHAR,
-    percentage_increase DECIMAL
-)
-LANGUAGE plpgsql
-AS $$
-BEGIN
-    -- Update salaries for chefs in the given kitchen station
-    UPDATE Chef
-    SET Salary = Salary + (Salary * (percentage_increase / 100))
-    WHERE works_in = station_name;
-
-    -- Notify about the success
-    RAISE NOTICE 'Salary updated for chefs in station: %', station_name;
-END;
-$$;
-CALL raise_chef_salary('Dessert Station', 1000.00);
-
-
-
---Triggers
--- Increment chef count
-
-
+--Procedures (4)
 
 CREATE PROCEDURE ApplyRaiseIndividualChefSalary(
     IN p_employee_id id_type,
@@ -179,42 +123,11 @@ $$;
 CALL ApplyRaiseGeneralChefSalary(1.22);
 
 
+-- ----------------------------------------------------------
 
--- -----------------------------------------------------------------------------------------------------
--- -----------------------------------------------------------------------------------------------------
--- -----------------------------------------------------------------------------------------------------
--- -----------------------------------------------------------------------------------------------------
 
--- VIEWS
 
-CREATE OR REPLACE VIEW employees AS
-SELECT 
-    employee_id,
-    chef_Name,
-    'Chef' AS Role,
-    Salary
-FROM chef
 
-UNION ALL
-
-SELECT 
-    employee_id,
-    waiter_Name,
-    'Waiter' AS Role,
-    Salary
-FROM Waiter
-
-UNION ALL
-
-SELECT 
-    employee_id,
-    driver_Name,
-    'Delivery Driver' AS Role,
-    0 Salary
-FROM Delivery_Driver;
-
-select *
-from employees
 
 
 
