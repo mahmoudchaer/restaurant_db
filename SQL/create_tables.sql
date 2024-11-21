@@ -74,10 +74,10 @@ CREATE TABLE meal (
 
 CREATE TABLE image_meal (
     image image_type,
-     meal_name name_type CONSTRAINT nn_image_meal_meal_name NOT NULL,
+     meal_name name_type,
     -- foreign key (meal_name) references meal(meal_name)
 
-    CONSTRAINT pk_image_meal PRIMARY KEY (image)
+    CONSTRAINT pk_image_meal PRIMARY KEY (image, meal_name)
 );
 
 
