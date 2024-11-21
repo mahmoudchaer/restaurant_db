@@ -293,7 +293,7 @@ VALUES
     (5, 'Rita Chidiac', 'Newly employed', NULL, 'Jounieh, Beachfront Road, Building 4', 81123456, 'rita.chidiac@company.com'),
     (6, 'Samer Haddad', 'Operations Manager', 4200.00, 'Byblos, Roman Plaza, Unit 2', 70123457, 'samer.haddad@company.com'),
     (7, 'Hala Saade', 'Legal Advisor', 4500.00, 'Tyre, Heritage Street, House 12', 71123457, 'hala.saade@company.com'),
-    (8, 'Jad Youssef', 'Newly employed, NULL, 'Baalbek, Temple Road, Villa 9', 76123457, 'jad.youssef@company.com'),
+    (8, 'Jad Youssef', 'Newly employed', NULL, 'Baalbek, Temple Road, Villa 9', 76123457, 'jad.youssef@company.com'),
     (9, 'Nadia Fares', 'Administrative Assistant', 3200.00, 'Batroun, Old Souk, Shop 7', 78123457, 'nadia.fares@company.com'),
     (10, 'Khaled Naim', 'Communications Officer', 3800.00, 'Aley, Pine Forest Drive, Building 8', 81123457, 'khaled.naim@company.com');
 
