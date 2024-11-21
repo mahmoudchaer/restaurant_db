@@ -1,4 +1,4 @@
---complex queries
+--complex queries (6)
 
 --get top 3 highest paid ROLES on average
 SELECT chef_role, sal
