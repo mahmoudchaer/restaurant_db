@@ -31,7 +31,7 @@ CREATE TABLE payment_method (
     customer_id id_type,
 
 
-    CONSTRAINT pk_payment_method PRIMARY KEY (payment_id)
+    CONSTRAINT pk_payment_method PRIMARY KEY (payment_id, customer_id)
 );
 
 CREATE TABLE review (
