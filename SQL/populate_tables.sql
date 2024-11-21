@@ -287,7 +287,7 @@ VALUES
 INSERT INTO administration (employee_id, adm_name, adm_role, salary, address, phone_number, email)
 VALUES 
     (1, 'Nour Jaber', 'HR Manager', 4000.00, 'Beirut, Central District, Building 1', 70123456, 'nour.jaber@company.com'),
-    (2, 'Ahmad Rami', 'Newly employed, NULL, 'Tripoli, Coastal Avenue, Apt 15', 71123456, 'ahmad.rami@company.com'),
+    (2, 'Ahmad Rami', 'Newly employed', NULL, 'Tripoli, Coastal Avenue, Apt 15', 71123456, 'ahmad.rami@company.com'),
     (3, 'Layla Hariri', 'Finance Officer', 3700.00, 'Sidon, Main Street, Floor 3', 76123456, 'layla.hariri@company.com'),
     (4, 'Omar Nassar', 'IT Specialist', 3900.00, 'Zahle, Market Square, Suite 10', 78123456, 'omar.nassar@company.com'),
     (5, 'Rita Chidiac', 'Newly employed', NULL, 'Jounieh, Beachfront Road, Building 4', 81123456, 'rita.chidiac@company.com'),
