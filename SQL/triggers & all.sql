@@ -35,6 +35,39 @@ AFTER DELETE ON chef
 FOR EACH ROW
 EXECUTE FUNCTION decrement_chef_count_function();
 
+CREATE OR REPLACE FUNCTION calculate_order_price(order_id_input INTEGER)
+RETURNS money_type AS $$
+DECLARE
+    total_price money_type := 0;
+BEGIN
+    SELECT SUM(m.price * c.quantity)
+    INTO total_price
+    FROM contain c
+    JOIN meal m ON c.meal_name = m.meal_name
+    WHERE c.order_id = order_id_input;
+
+    RETURN total_price;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION update_order_price()
+RETURNS TRIGGER AS $$
+BEGIN
+   
+    UPDATE customer_order
+    SET price = calculate_order_price(NEW.order_id)
+    WHERE order_id = NEW.order_id;
+
+    RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_update_order_price
+AFTER INSERT OR UPDATE OR DELETE
+ON contain
+FOR EACH ROW
+EXECUTE FUNCTION update_order_price();
 
 -- ----------------------------------------------------------------------------------------------------
 -- ----------------------------------------------------------------------------------------------------
