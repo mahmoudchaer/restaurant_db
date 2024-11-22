@@ -31,7 +31,7 @@ The system addresses critical aspects of restaurant management, including:
 ## Tools Used
 
 - **ER Diagram**: Created using [draw.io](https://draw.io).
-- **Relational Mapping**: Converted ER design into relational tables for efficient database storage and querying.
+- **Relational Mapping**: Converted ER design into relational tables for efficient database storage and querying. Also used [draw.io](https://draw.io) for this
 
 ## Database Benefits
 
