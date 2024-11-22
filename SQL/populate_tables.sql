@@ -71,18 +71,18 @@ VALUES
 
 
     
-INSERT INTO ingredient (inventory_id, minimum_quantity,price ,stock_qty, ingr_name)
+INSERT INTO ingredient (inventory_id, minimum_quantity, stock_qty, ingr_name)
 VALUES 
-    (1, 10, 0, 270 , 'Flour'),
-    (2, 20, 0, 250  , 'Sugar'),
-    (3, 5, 0, 230, 'Salt'),
-    (4, 15, 0, 220, 'Butter'),
-    (5, 25, 0, 280, 'Milk'),
-    (6, 10, 0, 340, 'Eggs'),
-    (7, 8, 0, 415, 'Vanilla Extract'),
-    (8, 12, 0, 360, 'Yeast'),
-    (9, 6, 0, 325, 'Baking Powder'),
-    (10, 18, 0, 290, 'Cocoa Powder');
+    (1, 10, 270 , 'Flour'),
+    (2, 20, 250  , 'Sugar'),
+    (3, 5, 230, 'Salt'),
+    (4, 15, 220, 'Butter'),
+    (5, 25,  280, 'Milk'),
+    (6, 10,  340, 'Eggs'),
+    (7, 8, 415, 'Vanilla Extract'),
+    (8, 12, 360, 'Yeast'),
+    (9, 6,  325, 'Baking Powder'),
+    (10, 18,  290, 'Cocoa Powder');
 
 
 INSERT INTO meal (meal_name, recipe, category, description)
