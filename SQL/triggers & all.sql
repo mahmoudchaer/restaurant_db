@@ -298,6 +298,7 @@ CALL calculate_costs();
 
 -- VIEWS
 
+
 CREATE OR REPLACE VIEW employees AS
 SELECT 
     employee_id,
@@ -319,11 +320,31 @@ SELECT
     employee_id,
     driver_Name,
     'Delivery Driver' AS Role,
-    0 Salary
-FROM Delivery_Driver;
+    0 Salary 
+FROM Delivery_Driver
+
+UNION ALL
+
+SELECT 
+    employee_id,
+    hr_name,
+    'HR Employee' AS Role,
+    Salary
+FROM hr
+
+UNION ALL
+
+SELECT 
+    employee_id,
+    adm_name,
+    'Administration Employee' AS Role,
+    salary
+FROM administration;
+
 
 select *
 from employees
+
 
 
 
