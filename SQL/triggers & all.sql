@@ -169,6 +169,22 @@ BEFORE INSERT OR UPDATE ON supplies
 FOR EACH ROW
 EXECUTE FUNCTION check_contract_date();
 
+-- makes order date only a current or future date, not past
+CREATE OR REPLACE FUNCTION check_order_time()
+RETURNS TRIGGER AS $$
+BEGIN
+  IF NEW.date >= CURRENT_DATE THEN
+    RAISE EXCEPTION 'Order must be for now or later, not before.';
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_contract_date
+BEFORE INSERT OR UPDATE ON customer_order
+FOR EACH ROW
+EXECUTE FUNCTION check_order_time();
+
 -- ----------------------------------------------------------------------------------------------------
 -- ----------------------------------------------------------------------------------------------------
 -- ----------------------------------------------------------------------------------------------------
