@@ -515,20 +515,6 @@ VALUES
     (10, 10);
 
 
-INSERT INTO contain (order_id, meal_name, quantity)
-VALUES 
-    (1, 'Spaghetti Bolognese', 2),
-    (2, 'Caesar Salad', 1),
-    (3, 'Grilled Chicken Sandwich', 3),
-    (4, 'Chocolate Cake', 2),
-    (5, 'Margarita Pizza', 4),
-    (6, 'Lentil Soup', 1),
-    (7, 'Beef Burger', 2),
-    (8, 'Tiramisu', 3),
-    (9, 'Chicken Alfredo', 1),
-    (10, 'Greek Salad', 2);
-
-
 INSERT INTO places (order_id, customer_id, waiter_id)
 VALUES 
     (1, 1, 'W1'),
@@ -615,3 +601,19 @@ INSERT INTO is_made_of (meal_id, ingredient_id, quantity)
 VALUES
     ('Greek Salad', 1, 2), -- Milk
     ('Greek Salad', 2, 1);   -- Salt
+
+CALL calculate_costs();
+
+INSERT INTO contain (order_id, meal_name, quantity)
+VALUES 
+    (1, 'Spaghetti Bolognese', 2),
+    (2, 'Caesar Salad', 1),
+    (3, 'Grilled Chicken Sandwich', 3),
+    (4, 'Chocolate Cake', 2),
+    (5, 'Margarita Pizza', 4),
+    (6, 'Lentil Soup', 1),
+    (7, 'Beef Burger', 2),
+    (8, 'Tiramisu', 3),
+    (9, 'Chicken Alfredo', 1),
+    (10, 'Greek Salad', 2);
+
