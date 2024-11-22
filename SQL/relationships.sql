@@ -83,7 +83,7 @@ CREATE TABLE is_made_of (
     ingredient_id integer,                                                                                                 
     PRIMARY KEY (ingredient_id, meal_id), 
     quantity quantity_type,
-    cost money_type,
+    cost money_type DEFAULT 0,
     FOREIGN KEY (ingredient_id) REFERENCES ingredient(inventory_id) ON DELETE CASCADE,
     FOREIGN KEY (meal_id) REFERENCES meal(meal_name) ON DELETE CASCADE
     
