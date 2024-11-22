@@ -176,18 +176,18 @@ VALUES
 
 
 
-INSERT INTO kitchen_station (station_name, number_of_chefs, specialization, manager_id)
+INSERT INTO kitchen_station (station_name, specialization, manager_id)
 VALUES 
-    ('Grill Station', 0, 'Grilling', NULL),
-    ('Pastry Station', 0, 'Baking & Pastry', NULL),
-    ('Sauce Station', 0, 'Sauce Preparation', NULL),
-    ('Fry Station', 0, 'Frying', NULL),
-    ('Garde Manger', 0, 'Cold Dishes', NULL),
-    ('Butchery Station', 0, 'Meat Preparation', NULL),
-    ('Fish Station', 0, 'Seafood Preparation', NULL),
-    ('Soup Station', 0, 'Soups & Stews', NULL),
-    ('Vegetable Station', 0, 'Vegetable Preparation', NULL),
-    ('Dessert Station', 0, 'Desserts', NULL);
+    ('Grill Station',  'Grilling', NULL),
+    ('Pastry Station',  'Baking & Pastry', NULL),
+    ('Sauce Station',  'Sauce Preparation', NULL),
+    ('Fry Station',  'Frying', NULL),
+    ('Garde Manger',  'Cold Dishes', NULL),
+    ('Butchery Station',  'Meat Preparation', NULL),
+    ('Fish Station',  'Seafood Preparation', NULL),
+    ('Soup Station',  'Soups & Stews', NULL),
+    ('Vegetable Station',  'Vegetable Preparation', NULL),
+    ('Dessert Station',  'Desserts', NULL);
 
 
 INSERT INTO chef (employee_id, chef_name, chef_role, salary, hire_date, cv, supervisor_id, works_in)
