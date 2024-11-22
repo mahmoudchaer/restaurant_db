@@ -105,6 +105,34 @@ EXECUTE FUNCTION update_ingredient_price();
 
 UPDATE ingredient
 SET price = calculate_ingredient_price(inventory_id);
+
+
+
+
+
+-- Sets total cost to make a meal in the meal table based on the costs of ingredients in the is_made_of table
+CREATE OR REPLACE FUNCTION update_meal_cost()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- Update the cost_meal in the meal table
+    UPDATE meal
+    SET cost_meal = (
+        SELECT SUM(cost)
+        FROM is_made_of
+        WHERE meal_id = NEW.meal_id
+    )
+    WHERE meal_name = NEW.meal_id;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER recalculate_meal_cost
+AFTER INSERT OR UPDATE OR DELETE
+ON is_made_of
+FOR EACH ROW
+EXECUTE FUNCTION update_meal_cost();
+
 -- ----------------------------------------------------------------------------------------------------
 -- ----------------------------------------------------------------------------------------------------
 -- ----------------------------------------------------------------------------------------------------
