@@ -185,6 +185,46 @@ BEFORE INSERT OR UPDATE ON customer_order
 FOR EACH ROW
 EXECUTE FUNCTION check_order_time();
 
+--Decrements stock quantity whenever an order is placed
+CREATE OR REPLACE FUNCTION decrement_stock_on_order()
+RETURNS TRIGGER AS $$
+DECLARE
+    meal_record RECORD; -- To hold each meal's ingredient and quantity
+    total_quantity_needed INTEGER; -- To calculate the total quantity needed for each ingredient
+BEGIN
+    -- Loop through each meal in the newly added order in the 'contain' table
+    FOR meal_record IN
+        SELECT im.ingredient_id, im.quantity * c.quantity AS total_quantity
+        FROM is_made_of im
+        JOIN contain c ON im.meal_id = c.meal_name
+        WHERE c.order_id = NEW.order_id
+    LOOP
+        -- Update the stock in the ingredient table
+        UPDATE ingredient
+        SET stock_qty = stock_qty - meal_record.total_quantity
+        WHERE inventory_id = meal_record.ingredient_id;
+
+        -- Check if stock drops below zero and raise an error
+        IF (SELECT stock_qty FROM ingredient WHERE inventory_id = meal_record.ingredient_id) < 0 THEN
+            RAISE EXCEPTION 'Stock of ingredient ID % is insufficient.', meal_record.ingredient_id;
+        END IF;
+    END LOOP;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS after_order_insert ON contain;
+
+CREATE TRIGGER after_order_insert
+AFTER INSERT ON contain
+FOR EACH ROW
+EXECUTE FUNCTION decrement_stock_on_order();
+
+
+
+
+
 
 -- ----------------------------------------------------------------------------------------------------
 -- ----------------------------------------------------------------------------------------------------
