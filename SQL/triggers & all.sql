@@ -1,4 +1,4 @@
---Triggers (3)
+--Triggers (6)
 -- Increment chef count
 CREATE OR REPLACE FUNCTION increment_chef_count_function()
 RETURNS TRIGGER AS $$
@@ -133,6 +133,24 @@ ON is_made_of
 FOR EACH ROW
 EXECUTE FUNCTION update_meal_cost();
 
+
+
+
+--Calculates price of a meal based on it's total cost to make
+CREATE OR REPLACE FUNCTION update_meal_price()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- Calculate and update the price as cost_meal + 20%
+    NEW.price := NEW.cost_meal * 1.20;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER calculate_price_on_cost_change
+BEFORE INSERT OR UPDATE
+ON meal
+FOR EACH ROW
+EXECUTE FUNCTION update_meal_price();
 -- ----------------------------------------------------------------------------------------------------
 -- ----------------------------------------------------------------------------------------------------
 -- ----------------------------------------------------------------------------------------------------
