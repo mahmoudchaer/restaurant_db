@@ -62,9 +62,9 @@ CREATE TABLE ingredient (
 
 CREATE TABLE meal (
     meal_name name_type,
-    cost_meal money_type CONSTRAINT nn_meal_cost_meal NOT NULL,
+    cost_meal money_type CONSTRAINT nn_meal_cost_meal NOT NULL DEFAULT 0,
     recipe description_type CONSTRAINT nn_meal_recipe NOT NULL,
-    price money_type,
+    price money_type DEFAULT 0,
     category varchar(50) CONSTRAINT nn_meal_category NOT NULL,
     description description_type CONSTRAINT nn_meal_description NOT NULL,
 	
