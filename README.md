@@ -49,7 +49,7 @@ The system addresses critical aspects of restaurant management, including:
 ## How to Use
 
 1. Clone the repository containing the database scripts and diagrams.
-2. Set up the database in your preferred relational database management system (e.g., PostgreSQL, MySQL).
+2. Set up the database in your preferred relational database management system (e.g., PostgreSQL, MySQL). Our implementation was made in PostegreSQL.
 3. Use the provided schema to create tables and populate data.
 4. Run SQL queries to manage operations such as placing orders, managing inventory, or viewing customer reviews.
 
