@@ -53,7 +53,7 @@ CREATE TABLE image_review (
 CREATE TABLE ingredient (
     inventory_id INTEGER,
     minimum_quantity quantity_type CONSTRAINT nn_ingredient_minimum_quantity NOT NULL,  --!!!!WHY DERIVED?
-    price money_type , --derived attribute
+    price money_type DEFAULT 0, --derived attribute
     stock_qty quantity_type CONSTRAINT nn_ingredient_stock_qty NOT NULL,
     ingr_name name_type CONSTRAINT nn_ingredient_ingr_name NOT NULL,
 
