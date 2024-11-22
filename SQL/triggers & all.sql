@@ -151,6 +151,24 @@ BEFORE INSERT OR UPDATE
 ON meal
 FOR EACH ROW
 EXECUTE FUNCTION update_meal_price();
+
+
+--contract with a supplier must end in the future
+CREATE OR REPLACE FUNCTION check_contract_date()
+RETURNS TRIGGER AS $$
+BEGIN
+  IF NEW.contract_until < CURRENT_DATE THEN
+    RAISE EXCEPTION 'Contract end date must be in the future.';
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_contract_date
+BEFORE INSERT OR UPDATE ON supplies
+FOR EACH ROW
+EXECUTE FUNCTION check_contract_date();
+
 -- ----------------------------------------------------------------------------------------------------
 -- ----------------------------------------------------------------------------------------------------
 -- ----------------------------------------------------------------------------------------------------
