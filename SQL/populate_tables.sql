@@ -85,7 +85,7 @@ VALUES
     (10, 18, 0,90, 'Cocoa Powder');
 
 
-INSERT INTO meal (meal_name, cost_meal, recipe, price, category, description)
+INSERT INTO meal (meal_name, recipe, category, description)
 VALUES 
     ('Spaghetti Bolognese',  'Pasta with a rich tomato and meat sauce', 'Main Course', 'Classic Italian pasta dish with beef sauce'),
     ('Caesar Salad',  'Romaine lettuce, croutons, Caesar dressing',  'Appetizer', 'Fresh salad with Caesar dressing and croutons'),
@@ -544,7 +544,7 @@ VALUES
     (10, 10, 'W10');
 
 -- Spaghetti Bolognese
-INSERT INTO is_made_of (meal_id, ingredient_id, quantity, cost)
+INSERT INTO is_made_of (meal_id, ingredient_id, quantity)
 VALUES
     ('Spaghetti Bolognese', 1, 2), -- Flour
     ('Spaghetti Bolognese', 3, 1),  -- Salt
@@ -552,7 +552,7 @@ VALUES
     ('Spaghetti Bolognese', 4, 1);  -- Butter
 
 -- Caesar Salad
-INSERT INTO is_made_of (meal_id, ingredient_id, quantity, cost)
+INSERT INTO is_made_of (meal_id, ingredient_id, quantity)
 VALUES
     ('Caesar Salad', 5, 1),  -- Milk
     ('Caesar Salad', 4, 2),  -- Butter
@@ -560,7 +560,7 @@ VALUES
     ('Caesar Salad', 3, 2);   -- Salt
 
 -- Grilled Chicken Sandwich
-INSERT INTO is_made_of (meal_id, ingredient_id, quantity, cost)
+INSERT INTO is_made_of (meal_id, ingredient_id, quantity)
 VALUES
     ('Grilled Chicken Sandwich', 1, 3), -- Flour
     ('Grilled Chicken Sandwich', 3, 1),   -- Salt
@@ -568,7 +568,7 @@ VALUES
     ('Grilled Chicken Sandwich', 6, 1);   -- Eggs
 
 -- Chocolate Cake
-INSERT INTO is_made_of (meal_id, ingredient_id, quantity, cost)
+INSERT INTO is_made_of (meal_id, ingredient_id, quantity)
 VALUES
     ('Chocolate Cake', 1, 2), -- Flour
     ('Chocolate Cake', 2, 1), -- Sugar
@@ -576,7 +576,7 @@ VALUES
     ('Chocolate Cake', 10, 1); -- Cocoa Powder
 
 -- Margarita Pizza
-INSERT INTO is_made_of (meal_id, ingredient_id, quantity, cost)
+INSERT INTO is_made_of (meal_id, ingredient_id, quantity)
 VALUES
     ('Margarita Pizza', 1, 1), -- Flour
     ('Margarita Pizza', 3, 1),   -- Salt
@@ -584,38 +584,35 @@ VALUES
     ('Margarita Pizza', 8, 1);  -- Yeast
 
 -- Lentil Soup
-INSERT INTO is_made_of (meal_id, ingredient_id, quantity, cost)
+INSERT INTO is_made_of (meal_id, ingredient_id, quantity)
 VALUES
     ('Lentil Soup', 3, 1),  -- Salt
     ('Lentil Soup', 5, 2), -- Milk
     ('Lentil Soup', 4, 1);  -- Butter
 
 -- Beef Burger
-INSERT INTO is_made_of (meal_id, ingredient_id, quantity, cost)
+INSERT INTO is_made_of (meal_id, ingredient_id, quantity)
 VALUES
     ('Beef Burger', 1, 1), -- Flour
     ('Beef Burger', 5, 1), -- Milk
     ('Beef Burger', 3, 2);   -- Salt
 
 -- Tiramisu
-INSERT INTO is_made_of (meal_id, ingredient_id, quantity, cost)
+INSERT INTO is_made_of (meal_id, ingredient_id, quantity)
 VALUES
     ('Tiramisu', 2, 1), -- Sugar
     ('Tiramisu', 6, 1),   -- Eggs
     ('Tiramisu', 7, 2);  -- Vanilla Extract
 
 -- Chicken Alfredo
-INSERT INTO is_made_of (meal_id, ingredient_id, quantity, cost)
+INSERT INTO is_made_of (meal_id, ingredient_id, quantity)
 VALUES
     ('Chicken Alfredo', 1, 2), -- Milk
     ('Chicken Alfredo', 2, 1),  -- Butter
     ('Chicken Alfredo', 3, 1);   -- Salt
 
 -- Greek Salad
-INSERT INTO is_made_of (meal_id, ingredient_id, quantity, cost)
+INSERT INTO is_made_of (meal_id, ingredient_id, quantity)
 VALUES
     ('Greek Salad', 1, 2), -- Milk
     ('Greek Salad', 2, 1);   -- Salt
-
-
-
