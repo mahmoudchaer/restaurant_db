@@ -87,16 +87,16 @@ VALUES
 
 INSERT INTO meal (meal_name, cost_meal, recipe, price, category, description)
 VALUES 
-    ('Spaghetti Bolognese', 8.50, 'Pasta with a rich tomato and meat sauce', 12.00, 'Main Course', 'Classic Italian pasta dish with beef sauce'),
-    ('Caesar Salad', 3.00, 'Romaine lettuce, croutons, Caesar dressing', 7.50, 'Appetizer', 'Fresh salad with Caesar dressing and croutons'),
-    ('Grilled Chicken Sandwich', 4.50, 'Grilled chicken, lettuce, tomato, mayonnaise', 10.00, 'Main Course', 'Juicy grilled chicken served on a toasted bun'),
-    ('Chocolate Cake', 5.00, 'Rich chocolate sponge with chocolate icing', 9.00, 'Dessert', 'Delicious and moist chocolate dessert'),
-    ('Margarita Pizza', 6.00, 'Thin crust pizza with tomato, mozzarella, basil', 11.00, 'Main Course', 'Classic Italian pizza with fresh ingredients'),
-    ('Lentil Soup', 2.50, 'Lentils cooked with spices and vegetables', 6.50, 'Appetizer', 'Hearty and flavorful vegetarian soup'),
-    ('Beef Burger', 4.00, 'Grilled beef patty, lettuce, tomato, cheese', 9.50, 'Main Course', 'Classic beef burger served with cheese and fresh toppings'),
-    ('Tiramisu', 4.75, 'Coffee-soaked ladyfingers layered with mascarpone', 8.00, 'Dessert', 'Traditional Italian coffee-flavored dessert'),
-    ('Chicken Alfredo', 7.00, 'Pasta tossed in creamy Alfredo sauce with chicken', 13.00, 'Main Course', 'Creamy pasta with tender chicken pieces'),
-    ('Greek Salad', 3.50, 'Tomatoes, cucumber, olives, feta cheese', 7.00, 'Appetizer', 'Traditional salad with fresh Mediterranean flavors');
+    ('Spaghetti Bolognese', 0, 'Pasta with a rich tomato and meat sauce', 0, 'Main Course', 'Classic Italian pasta dish with beef sauce'),
+    ('Caesar Salad', 0, 'Romaine lettuce, croutons, Caesar dressing', 0, 'Appetizer', 'Fresh salad with Caesar dressing and croutons'),
+    ('Grilled Chicken Sandwich', 0, 'Grilled chicken, lettuce, tomato, mayonnaise', 0, 'Main Course', 'Juicy grilled chicken served on a toasted bun'),
+    ('Chocolate Cake', 0, 'Rich chocolate sponge with chocolate icing', 0, 'Dessert', 'Delicious and moist chocolate dessert'),
+    ('Margarita Pizza', 0, 'Thin crust pizza with tomato, mozzarella, basil', 0, 'Main Course', 'Classic Italian pizza with fresh ingredients'),
+    ('Lentil Soup', 0, 'Lentils cooked with spices and vegetables', 0, 'Appetizer', 'Hearty and flavorful vegetarian soup'),
+    ('Beef Burger', 0, 'Grilled beef patty, lettuce, tomato, cheese', 0, 'Main Course', 'Classic beef burger served with cheese and fresh toppings'),
+    ('Tiramisu', 0, 'Coffee-soaked ladyfingers layered with mascarpone', 0, 'Dessert', 'Traditional Italian coffee-flavored dessert'),
+    ('Chicken Alfredo', 0, 'Pasta tossed in creamy Alfredo sauce with chicken', 0, 'Main Course', 'Creamy pasta with tender chicken pieces'),
+    ('Greek Salad', 0, 'Tomatoes, cucumber, olives, feta cheese', 0, 'Appetizer', 'Traditional salad with fresh Mediterranean flavors');
 
 
 
