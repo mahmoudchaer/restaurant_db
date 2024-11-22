@@ -260,7 +260,57 @@ ORDER BY
     Total_Spent DESC;
 
 
+-- recursive 
+WITH RECURSIVE Chef_Supervisor (ChefID, SupervisorID) AS (
+    -- Base case: 
+    SELECT
+        employee_id AS ChefID,
+        supervisor_id AS SupervisorID
+    FROM
+        chef
+    WHERE
+        supervisor_id IS NOT NULL
+    UNION
+    SELECT
+        C.employee_id AS ChefID,
+        S.SupervisorID AS SupervisorID
+    FROM
+        chef AS C
+    JOIN
+        Chef_Supervisor AS S
+    ON
+        C.supervisor_id = S.ChefID
+)
 
+SELECT *
+FROM Chef_Supervisor;
+
+
+
+WITH RECURSIVE Waiter_Supervisor (WaiterID, SupervisorID) AS (
+    -- Base case
+    SELECT
+        employee_id AS WaiterID,
+        supervisor_id AS SupervisorID
+    FROM
+        waiter
+    WHERE
+        supervisor_id IS NOT NULL
+    UNION
+
+    SELECT
+        W.employee_id AS WaiterID,
+        S.SupervisorID AS SupervisorID
+    FROM
+        waiter AS W
+    JOIN
+        Waiter_Supervisor AS S
+    ON
+        W.supervisor_id = S.WaiterID
+)
+
+SELECT *
+FROM Waiter_Supervisor;
 
 
 
