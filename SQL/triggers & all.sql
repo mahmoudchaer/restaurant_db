@@ -224,6 +224,36 @@ EXECUTE FUNCTION decrement_stock_on_order();
 
 
 
+CREATE OR REPLACE FUNCTION notify_restock()
+RETURNS TRIGGER AS $$
+DECLARE
+    supplier_name TEXT;
+    supplier_email TEXT;
+    ingredient_name TEXT;
+BEGIN
+    -- Check if stock_qty falls below minimum_quantity
+    IF NEW.stock_qty < NEW.minimum_quantity THEN
+        -- Fetch supplier's name, email, and ingredient name
+        SELECT s.name_supp, s.email, i.ingr_name
+        INTO supplier_name, supplier_email, ingredient_name
+        FROM supplier s
+        JOIN supplies sp ON s.supplier_id = sp.supplier
+        JOIN ingredient i ON i.inventory_id = sp.ingredient
+        WHERE sp.ingredient = NEW.inventory_id;
+
+        -- Print a message to notify the user
+        RAISE NOTICE 'Contact supplier % (Email: %) for restocking ingredient "%".',
+            supplier_name, supplier_email, ingredient_name;
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_notify_restock
+AFTER UPDATE OF stock_qty ON ingredient
+FOR EACH ROW
+EXECUTE FUNCTION notify_restock();
 
 
 -- ----------------------------------------------------------------------------------------------------
