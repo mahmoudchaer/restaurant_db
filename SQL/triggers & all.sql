@@ -180,10 +180,11 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER trg_contract_date
+CREATE TRIGGER trg_order_time
 BEFORE INSERT OR UPDATE ON customer_order
 FOR EACH ROW
 EXECUTE FUNCTION check_order_time();
+
 
 -- ----------------------------------------------------------------------------------------------------
 -- ----------------------------------------------------------------------------------------------------
