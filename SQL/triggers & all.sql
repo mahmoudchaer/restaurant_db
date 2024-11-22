@@ -173,7 +173,7 @@ EXECUTE FUNCTION check_contract_date();
 CREATE OR REPLACE FUNCTION check_order_time()
 RETURNS TRIGGER AS $$
 BEGIN
-  IF NEW.date >= CURRENT_DATE THEN
+  IF NEW.date < CURRENT_DATE THEN
     RAISE EXCEPTION 'Order must be for now or later, not before.';
   END IF;
   RETURN NEW;
