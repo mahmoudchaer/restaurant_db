@@ -1,6 +1,6 @@
---complex queries (12)
+--complex queries (15)
 
---get top 3 highest paid ROLES on average
+--get top 3 highest paid ROLES on average   
 SELECT chef_role, sal
 FROM (
     SELECT chef_role, SUM(salary) AS sal
@@ -12,13 +12,15 @@ LIMIT 3;
 
 -- ----------------------------------------------------
 
--- find most and least ordered meals
+-- find most and least ordered meals   
 select me.meal_name mn, sum(co.quantity)
 from meal me, contain co
 where me.meal_name= co.meal_name
 group by me.meal_name
 order by sum(co.quantity) desc
 
+-- ------------------------------------------------------------------
+    
 -- get revenue and profit for last 12 months from orders
 SELECT 
     TO_CHAR(co.date, 'YYYY-MM') AS month,
@@ -38,6 +40,7 @@ GROUP BY
 ORDER BY 
     month;
 
+-- ---------------------------------------------------------------
 -- profitability and salaries of by kitchen station
 WITH station_profit_salary AS (
     SELECT 
@@ -126,9 +129,10 @@ GROUP BY payment_type
 ORDER BY count DESC
 LIMIT 3;
 
+
 -- -------------------------------------------------------------
 
---Most expensive 3 products in the inventory
+--Most expensive 3 products in the inventory   
 SELECT i.ingr_name,
        s.ingredient,
        s.supp_cost,
@@ -139,6 +143,7 @@ JOIN supplies s ON i.inventory_id = s.ingredient
 ORDER BY total_cost  DESC 
 LIMIT 3
 
+    
 -- ------------------------------------------------------------
 
 
@@ -259,6 +264,7 @@ GROUP BY
 ORDER BY 
     Total_Spent DESC;
 
+-- ----------------------------------------------------
 
 -- recursive 
 WITH RECURSIVE Chef_Supervisor (ChefID, SupervisorID) AS (
@@ -285,7 +291,7 @@ WITH RECURSIVE Chef_Supervisor (ChefID, SupervisorID) AS (
 SELECT *
 FROM Chef_Supervisor;
 
-
+-- ------------------------------------------------------------------
 
 WITH RECURSIVE Waiter_Supervisor (WaiterID, SupervisorID) AS (
     -- Base case
