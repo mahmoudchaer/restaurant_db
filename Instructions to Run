@@ -1,0 +1,11 @@
+Please make sure to run the sql files in this order:
+
+Domains
+Create
+Fks
+Relationships
+Triggers _ Procedure for calculate cost in is made_of
+populate
+Security
+
+Then run the procedures and complex queries you want
