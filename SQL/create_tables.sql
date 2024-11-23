@@ -114,6 +114,7 @@ CREATE TABLE customer_order (
     customer_id id_type, -- fk customer_id to customer
     delivery_driver_id id_type, 
     price money_type DEFAULT 0  ,
+    payment_method varchar(25),
     CONSTRAINT pk_order PRIMARY KEY (order_id)
 );
 
