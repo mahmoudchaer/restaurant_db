@@ -1,4 +1,4 @@
---Triggers (6)
+--Triggers (9)
 -- Increment chef count
 CREATE OR REPLACE FUNCTION increment_chef_count_function()
 RETURNS TRIGGER AS $$
