@@ -27,37 +27,5 @@ GRANT manager_role TO manager_user;
 
 -- --------------------------------------------------------------------------
 
--- Customer role
-CREATE ROLE customer_role NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN PASSWORD 'cust123';
 
-
-
-GRANT SELECT ON menu TO customer_role;
-GRANT SELECT ON composed_of TO customer_role;
-GRANT SELECT ON image_meal TO customer_role;
-GRANT SELECT ON review TO customer_role;
-
-
-
-CREATE USER customer_user WITH PASSWORD 'cust123';
-GRANT customer_role TO customer_user;
-
--- --------------------------------------------------------------------------
-
--- Staff role
-CREATE ROLE Staff_role NOSUPERUSER NOCREATEDB NOCREATEROLE LOGIN PASSWORD 'staff123';
-
-
-
-GRANT SELECT ON menu TO staff_role;
-GRANT SELECT ON composed_of TO staff_role;
-GRANT SELECT ON delivery_driver TO staff_role;
-GRANT SELECT, INSERT ON meal TO staff_role;
-GRANT SELECT, INSERT ON contain TO staff_role;
-GRANT SELECT, INSERT ON customer_order TO staff_role;
-GRANT SELECT, INSERT ON places TO staff_role;
-
-
-CREATE USER staff_user WITH PASSWORD 'staff123';
-GRANT staff_role TO staff_user;
 
