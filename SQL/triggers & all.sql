@@ -360,7 +360,7 @@ BEGIN
 END;
 $$;
 
-CALL calculate_costs();
+--CALL calculate_costs();
 
 
 
