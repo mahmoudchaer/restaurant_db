@@ -1,4 +1,4 @@
---Triggers (9)
+--Triggers (10)
 -- Increment chef count
 CREATE OR REPLACE FUNCTION increment_chef_count_function()
 RETURNS TRIGGER AS $$
@@ -35,6 +35,7 @@ AFTER DELETE ON chef
 FOR EACH ROW
 EXECUTE FUNCTION decrement_chef_count_function();
 
+-- -----------------------------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION calculate_order_price(order_id_input INTEGER)
 RETURNS money_type AS $$
 DECLARE
@@ -69,7 +70,7 @@ ON contain
 FOR EACH ROW
 EXECUTE FUNCTION update_order_price();
 
-
+-- ------------------------------------------------------------------------------------
 
 CREATE OR REPLACE FUNCTION calculate_ingredient_price(ingredient_id INTEGER)
 RETURNS money_type AS $$
@@ -107,7 +108,7 @@ UPDATE ingredient
 SET price = calculate_ingredient_price(inventory_id);
 
 
-
+-- ------------------------------------------------------------------------------
 
 
 -- Sets total cost to make a meal in the meal table based on the costs of ingredients in the is_made_of table
@@ -133,7 +134,7 @@ ON is_made_of
 FOR EACH ROW
 EXECUTE FUNCTION update_meal_cost();
 
-
+-- -----------------------------------------------------------------------------
 
 
 --Calculates price of a meal based on it's total cost to make
@@ -152,7 +153,7 @@ ON meal
 FOR EACH ROW
 EXECUTE FUNCTION update_meal_price();
 
-
+-- ------------------------------------------------------------------------------------
 --contract with a supplier must end in the future
 CREATE OR REPLACE FUNCTION check_contract_date()
 RETURNS TRIGGER AS $$
@@ -169,6 +170,8 @@ BEFORE INSERT OR UPDATE ON supplies
 FOR EACH ROW
 EXECUTE FUNCTION check_contract_date();
 
+
+-- ------------------------------------------------------------------------------------
 -- makes order date only a current or future date, not past
 CREATE OR REPLACE FUNCTION check_order_time()
 RETURNS TRIGGER AS $$
@@ -185,6 +188,7 @@ BEFORE INSERT OR UPDATE ON customer_order
 FOR EACH ROW
 EXECUTE FUNCTION check_order_time();
 
+-- --------------------------------------------------------------------------------
 --Decrements stock quantity whenever an order is placed
 CREATE OR REPLACE FUNCTION decrement_stock_on_order()
 RETURNS TRIGGER AS $$
@@ -221,7 +225,7 @@ AFTER INSERT ON contain
 FOR EACH ROW
 EXECUTE FUNCTION decrement_stock_on_order();
 
-
+-- ---------------------------------------------------------------------------------
 
 
 CREATE OR REPLACE FUNCTION notify_restock()
@@ -366,7 +370,7 @@ $$;
 
 -----------------------------------------------------------------------------------------------------
 
--- VIEWS
+-- VIEWS (1)
 
 
 CREATE OR REPLACE VIEW employees AS
