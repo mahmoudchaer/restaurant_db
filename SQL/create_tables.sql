@@ -36,7 +36,7 @@ CREATE TABLE payment_method (
 CREATE TABLE review (
     review_id INTEGER UNIQUE, 
     customer_id id_type, 
-     rating rating_type CONSTRAINT nn_review_rating NOT NULL,
+    rating rating_type CONSTRAINT nn_review_rating NOT NULL,
     description description_type,
 	
     CONSTRAINT pk_review PRIMARY KEY (review_id, customer_id)
@@ -46,8 +46,8 @@ CREATE TABLE review (
 CREATE TABLE image_review (
     image image_type, 
     review_number int CONSTRAINT nn_image_review_review_number NOT NULL,
-
-    CONSTRAINT pk_image_review PRIMARY KEY (image,review_number)
+    customer_id id_type,
+    CONSTRAINT pk_image_review PRIMARY KEY (image,review_number, customer_id)
 );
 
 CREATE TABLE ingredient (
