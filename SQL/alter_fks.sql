@@ -12,6 +12,7 @@ foreign key (customer_id) references customer(customer_id) on update cascade on 
 alter table image_review 
 add constraint fk_image_review 
 foreign key (review_number) references review(review_id) on delete cascade;
+foreign key (customer_id) references customer(customer_id) on delete cascade;
 
 -- add foreign key to image_meal for meal_name
 alter table image_meal 
