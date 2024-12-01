@@ -28,18 +28,18 @@ VALUES
 
 
 
-INSERT INTO payment_method (payment_id, payment_type, customer_id)
+INSERT INTO payment_method (payment_type, customer_id)
 VALUES 
-    (1, 'Credit Card', 1),
-    (2, 'Debit Card', 2),
-    (3, 'PayPal', 3),
-    (4, 'Bank Transfer', 4),
-    (5, 'Cash', 5),
-    (6, 'Mobile Payment', 6),
-    (7, 'Cheque', 7),
-    (8, 'Cryptocurrency', 8),
-    (9, 'Credit Card', 9),
-    (10, 'Direct Debit', 10);
+    ('Credit Card', 1),
+    ('Debit Card', 2),
+    ('PayPal', 3),
+    ('Bank Transfer', 4),
+    ('Cash', 5),
+    ('Mobile Payment', 6),
+    ('Cheque', 7),
+    ('Cryptocurrency', 8),
+    ('Credit Card', 9),
+    ('Direct Debit', 10);
 
 
 INSERT INTO review (review_id, customer_id, rating, description)
