@@ -56,18 +56,18 @@ VALUES
     (10, 10, 5, 'Fantastic customer service and fast shipping. Very pleased!');
 
 
-INSERT INTO image_review (image, review_number)
+INSERT INTO image_review (image, review_number, customer_id)
 VALUES 
-    (decode('89504e470d0a1a0a0000000d49484452', 'hex'), 1),
-    (decode('89504e470d0a1a0a0000000d49484453', 'hex'), 2),
-    (decode('89504e470d0a1a0a0000000d49484454', 'hex'), 3),
-    (decode('89504e470d0a1a0a0000000d49484455', 'hex'), 4),
-    (decode('89504e470d0a1a0a0000000d49484456', 'hex'), 5),
-    (decode('89504e470d0a1a0a0000000d49484457', 'hex'), 6),
-    (decode('89504e470d0a1a0a0000000d49484458', 'hex'), 7),
-    (decode('89504e470d0a1a0a0000000d49484459', 'hex'), 8),
-    (decode('89504e470d0a1a0a0000000d4948445A', 'hex'), 9),
-    (decode('89504e470d0a1a0a0000000d4948445B', 'hex'), 10);
+    (decode('89504e470d0a1a0a0000000d49484452', 'hex'), 1,1),
+    (decode('89504e470d0a1a0a0000000d49484453', 'hex'), 2,2),
+    (decode('89504e470d0a1a0a0000000d49484454', 'hex'), 3,3),
+    (decode('89504e470d0a1a0a0000000d49484455', 'hex'), 4,4),
+    (decode('89504e470d0a1a0a0000000d49484456', 'hex'), 5,5),
+    (decode('89504e470d0a1a0a0000000d49484457', 'hex'), 6,6),
+    (decode('89504e470d0a1a0a0000000d49484458', 'hex'), 7,7),
+    (decode('89504e470d0a1a0a0000000d49484459', 'hex'), 8,8),
+    (decode('89504e470d0a1a0a0000000d4948445A', 'hex'), 9,9),
+    (decode('89504e470d0a1a0a0000000d4948445B', 'hex'), 10,10);
 
 
     
