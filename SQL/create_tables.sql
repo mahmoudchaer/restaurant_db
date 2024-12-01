@@ -25,12 +25,11 @@ CREATE TABLE hr (
 );
 
 CREATE TABLE payment_method (
-    payment_id id_type,
     payment_type varchar(50) CONSTRAINT nn_payment_method_payment_type NOT NULL,
     customer_id id_type,
 
 
-    CONSTRAINT pk_payment_method PRIMARY KEY (payment_id, customer_id)
+    CONSTRAINT pk_payment_method PRIMARY KEY (payment_type, customer_id)
 );
 
 CREATE TABLE review (
