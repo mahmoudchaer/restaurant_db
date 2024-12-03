@@ -52,7 +52,7 @@ CREATE TABLE image_review (
 CREATE TABLE ingredient (
     inventory_id INTEGER,
     minimum_quantity quantity_type CONSTRAINT nn_ingredient_minimum_quantity NOT NULL,  
-    price money_type DEFAULT 0, --derived attribute
+    price money_type DEFAULT NULL, --derived attribute
     stock_qty quantity_type CONSTRAINT nn_ingredient_stock_qty NOT NULL,
     ingr_name name_type CONSTRAINT nn_ingredient_ingr_name NOT NULL,
 
@@ -61,9 +61,9 @@ CREATE TABLE ingredient (
 
 CREATE TABLE meal (
     meal_name name_type,
-    cost_meal money_type CONSTRAINT nn_meal_cost_meal NOT NULL DEFAULT 0,
+    cost_meal money_type CONSTRAINT nn_meal_cost_meal NOT NULL DEFAULT NULL,
     recipe description_type CONSTRAINT nn_meal_recipe NOT NULL,
-    price money_type DEFAULT 0,
+    price money_type DEFAULT NULL,
     category varchar(50) CONSTRAINT nn_meal_category NOT NULL,
     description description_type CONSTRAINT nn_meal_description NOT NULL,
 	
