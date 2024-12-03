@@ -52,7 +52,7 @@ CREATE TABLE image_review (
 CREATE TABLE ingredient (
     inventory_id INTEGER,
     minimum_quantity quantity_type CONSTRAINT nn_ingredient_minimum_quantity NOT NULL,  
-    price money_type DEFAULT NULL, --derived attribute
+    price money_type DEFAULT 0, --derived attribute
     stock_qty quantity_type CONSTRAINT nn_ingredient_stock_qty NOT NULL,
     ingr_name name_type CONSTRAINT nn_ingredient_ingr_name NOT NULL,
 
@@ -61,9 +61,9 @@ CREATE TABLE ingredient (
 
 CREATE TABLE meal (
     meal_name name_type,
-    cost_meal money_type CONSTRAINT nn_meal_cost_meal NOT NULL DEFAULT NULL,
+    cost_meal money_type CONSTRAINT nn_meal_cost_meal NOT NULL DEFAULT 0,
     recipe description_type CONSTRAINT nn_meal_recipe NOT NULL,
-    price money_type DEFAULT NULL,
+    price money_type DEFAULT 0,
     category varchar(50) CONSTRAINT nn_meal_category NOT NULL,
     description description_type CONSTRAINT nn_meal_description NOT NULL,
 	
@@ -145,7 +145,7 @@ CREATE TABLE waiter (
 
     CONSTRAINT pk_waiter PRIMARY KEY (employee_id),
     CONSTRAINT check_waiter_id CHECK (employee_id LIKE 'W%'),
-    CONSTRAINT fk_waiter_supervisor FOREIGN KEY (supervisor_id) references waiter(employee_id) on update set default on delete set null
+    CONSTRAINT fk_waiter_supervisor FOREIGN KEY (supervisor_id) references waiter(employee_id) on update set default on delete set default
 );
 
 
@@ -202,7 +202,7 @@ CREATE TABLE administration (
 
 CREATE TABLE kitchen_station (
     station_name name_type,
-    number_of_chefs quantity_type DEFAULT 0, --could be null if station newly created or about to be closed
+    number_of_chefs quantity_type DEFAULT NULL, --could be null if station newly created or about to be closed
     specialization varchar(30) CONSTRAINT nn_kitchen_station_specialization NOT NULL,
     manager_id id_type,
 	
