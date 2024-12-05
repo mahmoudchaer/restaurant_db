@@ -11,20 +11,6 @@ st.set_page_config(
     layout="wide"
 )
 
-import os
-
-# Get the absolute path of your background image
-background_image_path = os.path.abspath("BackgroundImage.png")  # Replace with your file name
-
-# Add the custom CSS for light grey background
-st.markdown("""
-    <style>
-    .stApp {
-        background-color: #f4f4f4; /* Light grey background */
-        font-family: Arial, sans-serif;
-    }
-    </style>
-""", unsafe_allow_html=True)
 
 
 
@@ -134,61 +120,21 @@ def call_procedure(proc_name, params):
         st.error(f"Error executing procedure: {e}")
 
 # Streamlit UI
-st.title("BBB Database Dashboard")
+st.title("BBB Database Dashboard🍽️")
 
-tab0, tab1, tab2, tab3, tab4, tab5 = st.tabs([
-    "Welcome", "View Data", "Run Procedures", "Insert Data", "Employees View", "Complex Queries"
+tab0, tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
+    "Welcome Page", "View Data", "Run Procedures", "Insert Data", "Employees View", "Available Operations", "Visuals"
 ])
 
-import os
-
-# Get the absolute path to the image
-image_path = os.path.abspath("BBBLogo.png")
 
 # Welcome Tab
 with tab0:
-    # Add custom CSS for a softer gradient background and enhanced styling
-    st.markdown("""
-        <style>
-        /* Apply softer gradient background to the main content area */
-        .stApp {
-            background: linear-gradient(135deg, #d9e4f5, #b0c7e4); /* Softer pastel gradient */
-            background-size: cover; /* Ensure it covers the whole area */
-            font-family: Arial, sans-serif;
-        }
-        .welcome-container {
-            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white card */
-            border-radius: 15px; /* Rounded corners */
-            padding: 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-            max-width: 700px;
-            margin: 50px auto; /* Center the container */
-            text-align: center;
-        }
-        .welcome-container img {
-            width: 150px; /* Adjust logo size */
-            border-radius: 50%;
-            margin-bottom: 20px;
-        }
-        .welcome-container h1 {
-            font-size: 32px;
-            color: #333333; /* Dark text for readability */
-            margin-bottom: 10px;
-        }
-        .welcome-container p {
-            font-size: 18px;
-            color: #555555; /* Slightly darker text for contrast */
-            margin-bottom: 20px;
-        }
-        </style>
-    """, unsafe_allow_html=True)
 
     # Create the welcome content
     st.markdown(f"""
         <div class="welcome-container">
-            <img src="file://{image_path}" alt="Logo">
-            <h1>Welcome to the BBB Restaurant Management Dashboard 🍽️</h1>
-            <p>Streamline your restaurant operations with data insights, automated procedures, and more.</p>
+            <h1>Welcome to the BBB Restaurant Management Dashboard </h1>
+            <p>Kindly navigate to your tab of interest.</p>
         </div>
     """, unsafe_allow_html=True)
 
@@ -330,11 +276,12 @@ with tab4:
         st.write("Filtered Results")
         st.dataframe(filtered_data)
 
+
 # Complex Queries Tab
 with tab5:
     st.header("Complex Queries")
 
-    # Define the queries
+    # Define all complex queries
     complex_queries = {
         "Top 3 Highest Paid Roles": """
             SELECT chef_role, sal
@@ -455,19 +402,237 @@ with tab5:
             ORDER BY count DESC
             LIMIT 3;
         """,
-        # Add more queries as needed...
+        "Most Expensive 3 Products in Inventory": """
+            SELECT i.ingr_name,
+                   s.ingredient,
+                   s.supp_cost,
+                   i.stock_qty,
+                   (i.stock_qty * s.supp_cost) AS total_cost
+            FROM ingredient i
+            JOIN supplies s ON i.inventory_id = s.ingredient
+            ORDER BY total_cost DESC 
+            LIMIT 3;
+        """,
+        "Waiters Bringing Most Revenue": """
+            SELECT 
+                w.waiter_name AS Waiter,
+                SUM(m.price * c.quantity) AS Total_Revenue
+            FROM 
+                waiter w
+            JOIN 
+                places p ON w.employee_id = p.waiter_id
+            JOIN 
+                contain c ON p.order_id = c.order_id
+            JOIN 
+                meal m ON c.meal_name = m.meal_name
+            GROUP BY 
+                w.waiter_name
+            ORDER BY 
+                Total_Revenue DESC
+            LIMIT 5;
+        """,
+        "Highest Customer Reviews by Meal": """
+            SELECT 
+                c.cust_name AS Customer,
+                r.rating AS Rating,
+                r.description AS Review_Description,
+                m.meal_name AS Meal
+            FROM 
+                review r
+            JOIN 
+                customer c ON r.customer_id = c.customer_id
+            JOIN 
+                image_review ir ON r.review_id = ir.review_number
+            JOIN 
+                image_meal im ON ir.image = im.image
+            JOIN 
+                meal m ON im.meal_name = m.meal_name
+            WHERE 
+                r.rating >= 4
+            ORDER BY 
+                r.rating DESC;
+        """,
+        "Ingredients Needing Restocking": """
+            SELECT 
+                ingr_name AS Ingredient,
+                stock_qty AS Stock,
+                minimum_quantity AS Minimum_Required
+            FROM 
+                ingredient
+            WHERE 
+                stock_qty < minimum_quantity
+            ORDER BY 
+                stock_qty ASC;
+        """,
+        "Shift Hours of Chefs (Highest to Lowest)": """
+            SELECT 
+                ch.chef_name AS Chef,
+                COUNT(cs.administration_id) AS Total_Shifts,
+                SUM(EXTRACT(EPOCH FROM (cs.end_time - cs.start_time))/3600) AS Total_Working_Hours
+            FROM 
+                chef ch
+            JOIN 
+                chef_shift cs ON ch.employee_id = cs.chef_id
+            GROUP BY 
+                ch.chef_name
+            ORDER BY 
+                Total_Working_Hours DESC;
+        """,
+        "Most Popular Meal Categories": """
+            SELECT 
+                m.category AS Meal_Category,
+                COUNT(co.order_id) AS Total_Orders
+            FROM 
+                meal m
+            JOIN 
+                contain co ON m.meal_name = co.meal_name
+            GROUP BY 
+                m.category
+            ORDER BY 
+                Total_Orders DESC;
+        """,
+        "Total Spending by Customers with Payment Methods": """
+            SELECT 
+                c.cust_name AS Customer,
+                SUM(m.price * co.quantity) AS Total_Spent,
+                pm.payment_type AS Payment_Method
+            FROM 
+                customer c
+            JOIN 
+                customer_order o ON c.customer_id = o.customer_id
+            JOIN 
+                contain co ON o.order_id = co.order_id
+            JOIN 
+                meal m ON co.meal_name = m.meal_name
+            JOIN 
+                payment_method pm ON c.customer_id = pm.customer_id
+            GROUP BY 
+                c.cust_name, pm.payment_type
+            ORDER BY 
+                Total_Spent DESC;
+        """,
+        "Recursive Query: Chef Supervisors": """
+            WITH RECURSIVE Chef_Supervisor (ChefID, SupervisorID) AS (
+                SELECT
+                    employee_id AS ChefID,
+                    supervisor_id AS SupervisorID
+                FROM
+                    chef
+                WHERE
+                    supervisor_id IS NOT NULL
+                UNION
+                SELECT
+                    C.employee_id AS ChefID,
+                    S.SupervisorID AS SupervisorID
+                FROM
+                    chef AS C
+                JOIN
+                    Chef_Supervisor AS S
+                ON
+                    C.supervisor_id = S.ChefID
+            )
+            SELECT *
+            FROM Chef_Supervisor;
+        """,
+        "Recursive Query: Waiter Supervisors": """
+            WITH RECURSIVE Waiter_Supervisor (WaiterID, SupervisorID) AS (
+                SELECT
+                    employee_id AS WaiterID,
+                    supervisor_id AS SupervisorID
+                FROM
+                    waiter
+                WHERE
+                    supervisor_id IS NOT NULL
+                UNION
+                SELECT
+                    W.employee_id AS WaiterID,
+                    S.SupervisorID AS SupervisorID
+                FROM
+                    waiter AS W
+                JOIN
+                    Waiter_Supervisor AS S
+                ON
+                    W.supervisor_id = S.WaiterID
+            )
+            SELECT *
+            FROM Waiter_Supervisor;
+        """,
     }
 
     # Dropdown to select a query
     query_name = st.selectbox("Select a Query", list(complex_queries.keys()))
 
-    # Button to execute the query
+    # Button to execute the selected query
     if st.button("Execute Query"):
         query = complex_queries[query_name]
         try:
-            # Execute the query
-            data = fetch_data(query)
+            data = fetch_data(query)  # Execute the query
             st.write(f"Results for: {query_name}")
-            st.dataframe(data)
+            st.dataframe(data)  # Display the query results
         except Exception as e:
             st.error(f"Error executing query: {e}")
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+with tab6:  # New tab for visuals
+    st.header("Visuals")
+
+    # Dropdown to select a table for plotting
+    table_for_plot = st.selectbox("Select a Table for Visualization", get_tables())
+
+    if table_for_plot:
+        query = f"SELECT * FROM {table_for_plot}"
+        data = fetch_data(query)  # Fetch data from the selected table
+
+        if not data.empty:
+            # Show raw data preview
+            st.subheader(f"Data Preview from {table_for_plot}")
+            st.dataframe(data, height=200)
+
+            # Filter numerical and categorical columns (exclude ID columns)
+            numeric_columns = [col for col in data.select_dtypes(include=['number']).columns if 'id' not in col.lower()]
+            categorical_columns = [col for col in data.select_dtypes(include=['object']).columns if 'id' not in col.lower()]
+
+            # Example 1: Bar Plot for numerical columns
+            st.subheader("Bar Plot")
+            if len(numeric_columns) >= 2:
+                x_col = st.selectbox("Select X-axis Column", numeric_columns, key="bar_x")
+                y_col = st.selectbox("Select Y-axis Column", numeric_columns, key="bar_y")
+
+                if x_col and y_col and x_col != y_col:
+                    fig, ax = plt.subplots(figsize=(8, 4))  # Smaller plot size
+                    sns.barplot(x=data[x_col], y=data[y_col], ax=ax, palette="viridis")
+                    ax.set_title(f"{x_col} vs {y_col}", fontsize=14)
+                    ax.set_xlabel(x_col, fontsize=12)
+                    ax.set_ylabel(y_col, fontsize=12)
+                    ax.tick_params(axis='x', rotation=45)
+                    st.pyplot(fig)
+                else:
+                    st.warning("Please select two different numerical columns.")
+            else:
+                st.write("Not enough numerical columns for a bar plot.")
+
+            # Example 2: Pie Chart for categorical columns
+            st.subheader("Pie Chart")
+            if len(categorical_columns) > 0:
+                cat_col = st.selectbox("Select Column for Pie Chart", categorical_columns, key="pie_col")
+                if cat_col:
+                    fig, ax = plt.subplots(figsize=(6, 6))  # Smaller plot size
+                    data[cat_col].value_counts().plot.pie(
+                        autopct="%1.1f%%", startangle=90, ax=ax, wedgeprops={"edgecolor": "k"}
+                    )
+                    ax.set_ylabel("")  # Remove y-label for pie chart
+                    ax.set_title(f"Distribution of {cat_col}", fontsize=14)
+                    st.pyplot(fig)
+            else:
+                st.write("No categorical columns available for a pie chart.")
+
+            # Example 3: Line Plot for trends
+            st.subheader("Line Plot")
+            if len(numeric_columns) >= 2:
+                x_line_col = st.selectbox("Select X-axis Column for Line Plot", numeric_columns, key="line_x")
+                y_line_col = st.selectbox("Select Y-axis Column for Line Plot", numeric_columns, key="line_y")
+
+                if x_line_col and y_line_col and x_line_col != y_line_col:
+                    fig
