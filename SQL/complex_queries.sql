@@ -1,5 +1,6 @@
 --complex queries (15)
 
+--hsen
 --get top 3 highest paid ROLES on average   
 SELECT chef_role, sal
 FROM (
@@ -11,7 +12,7 @@ ORDER BY sal DESC
 LIMIT 3;
 
 -- ----------------------------------------------------
-
+--hsen
 -- find most and least ordered meals   
 select me.meal_name mn, sum(co.quantity)
 from meal me, contain co
@@ -20,7 +21,7 @@ group by me.meal_name
 order by sum(co.quantity) desc
 
 -- ------------------------------------------------------------------
-    
+--hsen
 -- get revenue and profit for last 12 months from orders
 SELECT 
     TO_CHAR(co.date, 'YYYY-MM') AS month,
@@ -41,6 +42,7 @@ ORDER BY
     month;
 
 -- ---------------------------------------------------------------
+--hsen
 -- profitability and salaries of by kitchen station
 WITH station_profit_salary AS (
     SELECT 
@@ -75,6 +77,7 @@ ORDER BY
 
 -- ----------------------------------------------------
 
+--hsen
 --chef by performance from meals cooked
 WITH chef_revenue AS (
     SELECT 
@@ -121,7 +124,7 @@ ORDER BY
 
 -- -------------------------------------------------------------
 
-
+--omar
 -- Top 3 payment methods
 SELECT payment_type, COUNT(*) AS count
 FROM payment_method
@@ -131,7 +134,7 @@ LIMIT 3;
 
 
 -- -------------------------------------------------------------
-
+--omar
 --Most expensive 3 products in the inventory   
 SELECT i.ingr_name,
        s.ingredient,
@@ -146,7 +149,7 @@ LIMIT 3
     
 -- ------------------------------------------------------------
 
-
+--omar
 --Waiters that bring in the most revenue
 
 SELECT 
@@ -167,6 +170,8 @@ ORDER BY
 LIMIT 5;
 
 -- -------------------------------------------------------------
+
+--omar
  -- Show highest customer reviews alongside the meals they reviewed
 
 SELECT 
@@ -190,7 +195,7 @@ ORDER BY
     r.rating DESC
 
 -- ------------------------------------------------------------
-
+--omar
 -- Show ingredients that need restocking, i.e. ingredients with stock lower than the minimum 
 
 SELECT 
@@ -206,7 +211,7 @@ ORDER BY
 
 
 -- ------------------------------------------------------------
-
+--mahmoud
 -- Return shift hours of chefs from highest to lowest
 
 SELECT 
@@ -224,7 +229,7 @@ ORDER BY
 
 
 -- ------------------------------------------------------------
-
+--mahmoud
 -- Return most popular meal categories
 
 SELECT 
@@ -242,7 +247,7 @@ ORDER BY
 
 
 -- ------------------------------------------------------------
-
+--mahmoud
 -- Calculate the total amount spent by each customer, including detailed payment methods.
 
 SELECT 
@@ -265,7 +270,7 @@ ORDER BY
     Total_Spent DESC;
 
 -- ----------------------------------------------------
-
+--mahmoud
 -- recursive 
 WITH RECURSIVE Chef_Supervisor (ChefID, SupervisorID) AS (
     -- Base case: 
@@ -292,7 +297,7 @@ SELECT *
 FROM Chef_Supervisor;
 
 -- ------------------------------------------------------------------
-
+--mahmoud
 WITH RECURSIVE Waiter_Supervisor (WaiterID, SupervisorID) AS (
     -- Base case
     SELECT
