@@ -1,5 +1,5 @@
 --Triggers (10)
--- Increment chef count
+-- Increment chef count Hsen
 CREATE OR REPLACE FUNCTION increment_chef_count_function()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -18,7 +18,7 @@ EXECUTE FUNCTION increment_chef_count_function();
 
 -- ---------------------------------------------------------------------------------------
 
--- Decrement chef count
+-- Decrement chef count Hsen
 CREATE OR REPLACE FUNCTION decrement_chef_count_function()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -36,6 +36,7 @@ FOR EACH ROW
 EXECUTE FUNCTION decrement_chef_count_function();
 
 -- -----------------------------------------------------------------------------------------
+--Omar
 CREATE OR REPLACE FUNCTION calculate_order_price(order_id_input INTEGER)
 RETURNS money_type AS $$
 DECLARE
@@ -71,7 +72,7 @@ FOR EACH ROW
 EXECUTE FUNCTION update_order_price();
 
 -- ------------------------------------------------------------------------------------
-
+--Omar
 CREATE OR REPLACE FUNCTION calculate_ingredient_price(ingredient_id INTEGER)
 RETURNS money_type AS $$
 DECLARE
@@ -110,7 +111,7 @@ SET price = calculate_ingredient_price(inventory_id);
 
 -- ------------------------------------------------------------------------------
 
-
+--omar
 -- Sets total cost to make a meal in the meal table based on the costs of ingredients in the is_made_of table
 CREATE OR REPLACE FUNCTION update_meal_cost()
 RETURNS TRIGGER AS $$
@@ -136,7 +137,7 @@ EXECUTE FUNCTION update_meal_cost();
 
 -- -----------------------------------------------------------------------------
 
-
+--omar
 --Calculates price of a meal based on it's total cost to make
 CREATE OR REPLACE FUNCTION update_meal_price()
 RETURNS TRIGGER AS $$
@@ -154,6 +155,7 @@ FOR EACH ROW
 EXECUTE FUNCTION update_meal_price();
 
 -- ------------------------------------------------------------------------------------
+--mahmoud
 --contract with a supplier must end in the future
 CREATE OR REPLACE FUNCTION check_contract_date()
 RETURNS TRIGGER AS $$
@@ -172,6 +174,7 @@ EXECUTE FUNCTION check_contract_date();
 
 
 -- ------------------------------------------------------------------------------------
+--mahmoud
 -- makes order date only a current or future date, not past
 CREATE OR REPLACE FUNCTION check_order_time()
 RETURNS TRIGGER AS $$
@@ -189,6 +192,7 @@ FOR EACH ROW
 EXECUTE FUNCTION check_order_time();
 
 -- --------------------------------------------------------------------------------
+--mahmoud
 --Decrements stock quantity whenever an order is placed
 CREATE OR REPLACE FUNCTION decrement_stock_on_order()
 RETURNS TRIGGER AS $$
@@ -227,7 +231,7 @@ EXECUTE FUNCTION decrement_stock_on_order();
 
 -- ---------------------------------------------------------------------------------
 
-
+--mahmoud
 CREATE OR REPLACE FUNCTION notify_restock()
 RETURNS TRIGGER AS $$
 DECLARE
@@ -266,7 +270,7 @@ EXECUTE FUNCTION notify_restock();
 -- ----------------------------------------------------------------------------------------------------
 
 --Procedures (5)
-
+--Hsen
 CREATE PROCEDURE ApplyRaiseIndividualChefSalary(
     IN p_employee_id id_type,
     IN raisevalue DECIMAL
@@ -286,7 +290,7 @@ CALL ApplyRaiseIndividualChefSalary('C13', 1.1);
 
 
 -- ---------------------------------------------------------
-
+--hsen
 CREATE PROCEDURE ApplyRaiseIndividualWaiterSalary(
     IN p_employee_id id_type,
     IN raisevalue DECIMAL
@@ -306,7 +310,7 @@ CALL ApplyRaiseIndividualwaiterSalary('W1', 1.22);
 
 
 -- ----------------------------------------------------------
-
+--hsen
 
 CREATE PROCEDURE ApplyRaiseGeneralWaiterSalary(
     IN raisevalue DECIMAL
@@ -328,7 +332,7 @@ CALL ApplyRaiseGeneralWaiterSalary(1.22);
 -- ----------------------------------------------------------
 
 
-
+--hsen
 CREATE PROCEDURE ApplyRaiseGeneralChefSalary(
     IN raisevalue DECIMAL
 )
@@ -349,7 +353,7 @@ CALL ApplyRaiseGeneralChefSalary(1.22);
 
 -- ----------------------------------------------------------
 
-
+--omar
 CREATE OR REPLACE PROCEDURE calculate_costs()
 LANGUAGE plpgsql
 AS $$
@@ -372,7 +376,7 @@ $$;
 
 -- VIEWS (1)
 
-
+--mahmoud
 CREATE OR REPLACE VIEW employees AS
 SELECT 
     employee_id,
